@@ -10,7 +10,7 @@ router.get('/:username', (req, res) => {
     const options = {
       uri: `http://api.github.com/users/${
         req.params.username
-      }/repos?per_page=2&sort=created:asc&client_id=${config.get(
+      }/repos?per_page=5&sort=created:asc&client_id=${config.get(
         'githubClientId'
       )}&client_secret=${config.get('githubSecret')}`,
       method: 'GET',
@@ -23,6 +23,7 @@ router.get('/:username', (req, res) => {
       if (response.statusCode !== 200) {
         return res.status(404).json({ msg: 'No Github Profile found' });
       }
+      console.log(JSON.parse(body));
       res.json(JSON.parse(body));
     });
   } catch (err) {

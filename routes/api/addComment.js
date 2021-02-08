@@ -5,7 +5,7 @@ const Post = require('../../models/Posts');
 const { check, validationResult } = require('express-validator');
 const User = require('../../models/User');
 
-router.put(
+router.post(
   '/:post_id',
   [auth, check('text', 'Write some comments').not().isEmpty()],
   async (req, res) => {
@@ -21,12 +21,13 @@ router.put(
         avatar: user.avatar,
         text: req.body.text,
       };
-      // console.log(newComment);
+      console.log(newComment);
       let post = await Post.findById(req.params.post_id);
       if (!post) {
         return res.status(400).json({ msg: 'No post found' });
       }
       post.comments.unshift(newComment);
+      console.log('Success');
       await post.save();
       res.json(newComment);
     } catch (err) {

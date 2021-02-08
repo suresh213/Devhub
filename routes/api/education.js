@@ -6,7 +6,7 @@ const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 // Add Education
 router.put(
-  '/',
+  '/create',
   [
     auth,
     check('school', 'School is required').not().isEmpty(),
@@ -38,27 +38,30 @@ router.put(
       let profile = await Profile.findOne({ user: req.user.id });
       profile.education.unshift(newEducation);
       await profile.save();
-      res.json({ msg: 'Education added' });
+      return res.json(profile);
     } catch (err) {
       console.log(err.message);
-      return res.status(400).send('Server Error');
+      return res.status(500).send('Server Error');
     }
   }
 );
-// Delete Experience
+// Delete Education
 router.delete('/:edu_id', auth, async (req, res) => {
   try {
-    let profile = await Profile.findOne({ user: req.user.id });
-    let removeIndex = profile.education
-      .map((item) => item.id)
-      .indexOf(req.params.edu_id);
-
-    profile.education.splice(removeIndex, 1);
-    profile.save();
-    res.json({ msg: 'Education deleted' });
-  } catch (err) {
-    console.log(err.message);
-    return res.status(400).send('Server Error');
+    const profile = await Profile.findOne({ user: req.user.id });
+    const eduIds = profile.education.map((edu) => edu._id.toString());
+    const removeIndex = eduIds.indexOf(req.params.edu_id);
+    console.log(removeIndex);
+    if (removeIndex === -1) {
+      return res.status(500).json({ msg: 'Server error' });
+    } else {
+      profile.education.splice(removeIndex, 1);
+      await profile.save();
+      res.json(profile);
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ msg: 'Server error' });
   }
 });
 module.exports = router;

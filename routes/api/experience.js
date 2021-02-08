@@ -38,23 +38,29 @@ router.put(
       profile.experience.unshift(newExperience);
       await profile.save();
       res.json(profile);
-    } catch (err) {}
+    } catch (err) {
+      console.log(err.message);
+      return res.status(400).send('Server Error');
+    }
   }
 );
 // Delete Experience
 router.delete('/:exp_id', auth, async (req, res) => {
   try {
-    let profile = await Profile.findOne({ user: req.user.id });
-    let removeIndex = profile.experience
-      .map((item) => item.id)
-      .indexOf(req.params.exp_id);
+    const profile = await Profile.findOne({ user: req.user.id });
+    const expIds = profile.experience.map((exp) => exp._id.toString());
+    const removeIndex = expIds.indexOf(req.params.exp_id);
     console.log(removeIndex);
-    profile.experience.splice(removeIndex, 1);
-    await profile.save();
-    res.json({ msg: 'Experience deleted' });
-  } catch (err) {
-    console.log(err.message);
-    return res.status(500).send('Server Error');
+    if (removeIndex === -1) {
+      return res.status(500).json({ msg: 'Server error' });
+    } else {
+      profile.experience.splice(removeIndex, 1);
+      await profile.save();
+      res.json(profile);
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ msg: 'Server error' });
   }
 });
 

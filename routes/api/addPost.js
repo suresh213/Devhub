@@ -25,7 +25,7 @@ router.post(
       res.json(newPost);
     } catch (err) {
       console.log(err.message);
-      return res.status(400).json({ msg: 'Server error' });
+      return res.status(500).json({ msg: 'Server error' });
     }
   }
 );

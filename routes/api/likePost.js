@@ -18,7 +18,7 @@ router.put('/:like_id', auth, async (req, res) => {
     post.likes.unshift({ user: req.user.id });
     await post.save();
     res.json(post.likes);
-  } catch (error) {
+  } catch (err) {
     console.log(err.message);
     if (err.kind == 'ObjectId') {
       return res.status(400).json({ msg: 'No post found' });

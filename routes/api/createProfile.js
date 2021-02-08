@@ -19,44 +19,44 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-
-    const {
-      bio,
-      company,
-      location,
-      website,
-      status,
-      skills,
-      githubusername,
-      instagram,
-      facebook,
-      youtube,
-      linkedin,
-      twitter,
-    } = req.body;
-
-    const profileDetails = {};
-    profileDetails.user = req.user.id;
-    if (status) profileDetails.status = status;
-    if (skills)
-      profileDetails.skills = skills.split(',').map((skill) => skill.trim());
-    if (bio) profileDetails.bio = bio;
-    if (company) profileDetails.company = company;
-    if (website) profileDetails.website = website;
-    if (location) profileDetails.location = location;
-    if (githubusername) profileDetails.githubusername = githubusername;
-    if (bio) profileDetails.bio = bio;
-
-    profileDetails.social = {};
-    profileDetails.social.youtube = youtube;
-    profileDetails.social.twitter = twitter;
-    profileDetails.social.linkedin = linkedin;
-    profileDetails.social.facebook = facebook;
-    profileDetails.social.instagram = instagram;
-
-    console.log(profileDetails);
-
     try {
+      const {
+        bio,
+        company,
+        location,
+        website,
+        status,
+        skills,
+        githubusername,
+        instagram,
+        facebook,
+        youtube,
+        linkedin,
+        twitter,
+      } = req.body;
+
+      const profileDetails = {};
+
+      profileDetails.user = req.user.id;
+      if (status) profileDetails.status = status;
+      if (skills)
+        profileDetails.skills = skills.split(',').map((skill) => skill.trim());
+      if (bio) profileDetails.bio = bio;
+      if (company) profileDetails.company = company;
+      if (website) profileDetails.website = website;
+      if (location) profileDetails.location = location;
+      if (githubusername) profileDetails.githubusername = githubusername;
+      if (bio) profileDetails.bio = bio;
+
+      profileDetails.social = {};
+      profileDetails.social.youtube = youtube;
+      profileDetails.social.twitter = twitter;
+      profileDetails.social.linkedin = linkedin;
+      profileDetails.social.facebook = facebook;
+      profileDetails.social.instagram = instagram;
+
+      console.log(profileDetails);
+
       //console.log(req.user.id);
       let profile = await Profile.findOne({ user: req.user.id });
       // console.log(profile);
