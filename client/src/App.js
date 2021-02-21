@@ -13,6 +13,7 @@ import setAuthToken from './utils/setAuthToken';
 
 // Components
 import NavBar from './components/layouts/NavBar';
+import Search from './components/Search/Search';
 import Landing from './components/layouts/Landing';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
@@ -75,6 +76,7 @@ const App = () => {
                 path='/add-Education'
                 component={AddEducation}
               />
+              <PrivateRoute exact path='/search' component={Search} />
             </Switch>
           </section>
         </Fragment>

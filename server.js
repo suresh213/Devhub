@@ -15,6 +15,10 @@ app.use('/api/profile/me', require('./routes/api/userProfile'));
 app.use('/api/profile/create', require('./routes/api/createProfile'));
 app.use('/api/profile/delete', require('./routes/api/deleteUser'));
 app.use('/api/profile/allProfiles', require('./routes/api/allProfiles'));
+app.use(
+  '/api/profile/allProfiles/profilesByName',
+  require('./routes/api/allProfiles')
+);
 app.use('/api/profile/user', require('./routes/api/profileById'));
 app.use('/api/profile/experience', require('./routes/api/experience'));
 app.use('/api/profile/education', require('./routes/api/education'));

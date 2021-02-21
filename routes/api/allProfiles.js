@@ -13,4 +13,18 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/profilesByName/:name', async (req, res) => {
+  try {
+    console.log(req.params.name);
+    let profiles = await Profile.find({
+      user: { name: req.params.name },
+    }).populate('user', ['name', 'avatar']);
+    console.log(profiles);
+    res.json(profiles);
+  } catch (err) {
+    console.log(err.message);
+    return res.status(400).send('Server Error');
+  }
+});
+
 module.exports = router;
