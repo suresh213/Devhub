@@ -125,7 +125,6 @@ export const addComment = (formData, postId) => async (dispatch) => {
 
     toast('Comment added');
   } catch (err) {
-    console.log('--------------------------------');
     dispatch({
       type: POST_ERROR,
       payload: {

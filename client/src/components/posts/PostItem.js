@@ -53,7 +53,7 @@ const PostItem = ({
                 type='button'
                 className='btn btn-danger'
               >
-                Delete Post
+                X
               </button>
             )}
           </Fragment>

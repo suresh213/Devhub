@@ -25,7 +25,7 @@ const CommentForm = ({ postId, addComment }) => {
           cols='30'
           rows='5'
           value={text}
-          placeholder='Create a post'
+          placeholder='Add a comment'
           required
         ></textarea>
         <input type='submit' className='btn btn-dark my-1' value='Submit' />
@@ -36,7 +36,6 @@ const CommentForm = ({ postId, addComment }) => {
 
 CommentForm.propTypes = {
   addComment: PropTypes.func.isRequired,
-  postId: PropTypes.string.isRequired,
 };
 
 export default connect(null, { addComment })(CommentForm);

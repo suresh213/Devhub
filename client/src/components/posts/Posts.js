@@ -15,7 +15,7 @@ const Posts = ({ getAllPosts, post: { posts, loading } }) => {
     <Spinner />
   ) : (
     <Fragment>
-      <div className='form-container1'>
+      <div className='form-container'>
         <PostForm />
         <h3>All Posts</h3>
         {posts ? (

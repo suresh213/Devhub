@@ -9,13 +9,18 @@ import Spinner from '../layouts/Spinner';
 import PostItem from '../posts/PostItem';
 
 const Post = ({ getPostById, post: { post, loading }, match }) => {
+  const [comments, setComments] = useState({});
   useEffect(() => {
     getPostById(match.params.id);
-  }, [getPostById]);
+    if (post && post.comments) {
+      setComments(post.comments);
+    }
+  }, [getPostById, post]);
 
-  return loading || post === null ? (
-    <Spinner />
-  ) : (
+  if (loading || post === null) {
+    return <Spinner />;
+  }
+  return (
     <Fragment>
       <Link to='/posts' className='btn btn-light'>
         Back to Posts
@@ -23,15 +28,21 @@ const Post = ({ getPostById, post: { post, loading }, match }) => {
       <PostItem post={post} showActions={false} />
       <CommentForm postId={post._id} />
       <div className='comments'>
-        {post &&
-          post.comments &&
-          comments.map((comment) => (
-            <CommentItem
-              key={comment._id}
-              comment={comment}
-              postId={post._id}
-            />
-          ))}
+        {post ? (
+          comments.length > 0 ? (
+            comments.map((comment) => (
+              <CommentItem
+                key={comment._id}
+                comment={comment}
+                postId={post._id}
+              />
+            ))
+          ) : (
+            <p>No comments</p>
+          )
+        ) : (
+          <Spinner />
+        )}
       </div>
     </Fragment>
   );
@@ -39,9 +50,10 @@ const Post = ({ getPostById, post: { post, loading }, match }) => {
 
 Post.propTypes = {
   getPostById: PropTypes.func.isRequired,
+  post: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   post: state.post,
 });
-export default connect(mapStateToProps, { getPostById })(withRouter(Post));
+export default connect(mapStateToProps, { getPostById })(Post);

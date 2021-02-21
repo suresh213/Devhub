@@ -45,8 +45,8 @@ CommentItem.propTypes = {
   removeComment: PropTypes.func.isRequired,
 };
 
-const mapStateToprops = ({ auth }) => ({
-  auth,
+const mapStateToprops = (state) => ({
+  auth: state.auth,
 });
 
 export default connect(mapStateToprops, { removeComment })(CommentItem);

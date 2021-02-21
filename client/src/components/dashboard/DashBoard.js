@@ -16,12 +16,11 @@ const DashBoard = ({
   useEffect(() => {
     getCurrentProfile();
   }, [getCurrentProfile]);
-  // useEffect(() => {
 
-  // }, [profile])
-  return loading && profile === null ? (
-    <Spinner />
-  ) : (
+  if (loading && profile === null) {
+    return <Spinner />;
+  }
+  return (
     <Fragment>
       <h1 className='large text-primary'>Dashboard</h1>
       <div className='form-container1'>
@@ -32,11 +31,17 @@ const DashBoard = ({
               <h2> {user && user.name}</h2>
             </span>
           </div>
-          <h3 class='lead'>
-            {profile && profile.status && <span> {profile.status}</span>}{' '}
-            {profile && profile.company && <span>at {profile.company}</span>}
-          </h3>
-          <DashBoardActions />
+          {profile && (
+            <div>
+              <h3 class='lead'>
+                {profile && profile.status && <span> {profile.status}</span>}{' '}
+                {profile && profile.company && (
+                  <span>at {profile.company}</span>
+                )}
+              </h3>
+              <DashBoardActions />
+            </div>
+          )}
         </div>
         <div>
           {profile ? (

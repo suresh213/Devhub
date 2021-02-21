@@ -243,7 +243,7 @@ img {
 
 .form-container {
   text-align: center;
-  width: 60%;
+  width: 80%;
   margin: auto;
   overflow: hidden;
   padding: 20px;
@@ -545,8 +545,8 @@ button {
     margin-top: 8rem;
   }
   .form-container {
-    width: 300px;
-    padding: 10px;
+    width: 100%;
+    padding: 5px;
   }
   .form-container1 {
     width: 100%;
