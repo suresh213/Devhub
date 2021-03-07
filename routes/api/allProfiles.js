@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Profile = require('../../models/Profile');
+const User = require('../../models/User');
 
 // Get all profiles
 router.get('/', async (req, res) => {
@@ -17,7 +18,7 @@ router.get('/profilesByName/:name', async (req, res) => {
   try {
     console.log(req.params.name);
     let profiles = await Profile.find({
-      user: { name: req.params.name },
+      name: req.params.name,
     }).populate('user', ['name', 'avatar']);
     console.log(profiles);
     res.json(profiles);

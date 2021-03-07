@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -12,6 +12,25 @@ const PostItem = ({
   post: { _id, text, date, name, avatar, likes, comments, user },
   showActions,
 }) => {
+  const [isLiked, setIsLiked] = useState(false);
+  useEffect(() => {
+    if (auth.user) {
+      let liked = likes.filter((like) => like.user === auth.user._id);
+      if (liked.length > 0) {
+        setIsLiked(true);
+      }
+      console.log(isLiked);
+    }
+  }, [likes]);
+  const handleLikes = () => {
+    if (isLiked) {
+      setIsLiked(false);
+      removeLike(_id);
+    } else {
+      setIsLiked(true);
+      addLike(_id);
+    }
+  };
   return (
     <div className='post bg-white p-1 my-1'>
       <div>
@@ -29,20 +48,20 @@ const PostItem = ({
         {showActions && (
           <Fragment>
             <button
-              onClick={(e) => addLike(_id)}
+              onClick={handleLikes}
               type='button'
-              className='btn btn-light'
+              className={isLiked ? 'btn btn-dark ' : 'btn btn-light'}
             >
               <i className='fas fa-thumbs-up'></i>
               <span>{likes.length}</span>
             </button>
-            <button
+            {/* <button
               onClick={(e) => removeLike(_id)}
               type='button'
               className='btn btn-light'
             >
               <i className='fas fa-thumbs-down'></i>
-            </button>
+            </button> */}
             <Link to={`posts/${_id}`} className='btn btn-primary'>
               Discussion{' '}
               <span className='comment-count'>{comments.length}</span>

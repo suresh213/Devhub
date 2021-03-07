@@ -21,6 +21,7 @@ router.post(
     }
     try {
       const {
+        name,
         bio,
         company,
         location,
@@ -38,6 +39,7 @@ router.post(
       const profileDetails = {};
 
       profileDetails.user = req.user.id;
+      profileDetails.name = name;
       if (status) profileDetails.status = status;
       if (skills)
         profileDetails.skills = skills.split(',').map((skill) => skill.trim());

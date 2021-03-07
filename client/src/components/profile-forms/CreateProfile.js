@@ -1,10 +1,10 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { createProfile } from '../../actions/profile';
 
-const CreateProfile = ({ history, createProfile }) => {
+const CreateProfile = ({ history, createProfile, auth: {user} }) => {
   const [formData, setformData] = useState({
     company: '',
     location: '',
@@ -20,7 +20,9 @@ const CreateProfile = ({ history, createProfile }) => {
     twitter: '',
   });
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
-
+  useEffect(() => {
+    setformData({ ...formData, name: user.name });
+  }, []);
   const {
     company,
     location,
@@ -219,5 +221,9 @@ const CreateProfile = ({ history, createProfile }) => {
 CreateProfile.propTypes = {
   createProfile: PropTypes.func.isRequired,
 };
-
-export default connect(null, { createProfile })(withRouter(CreateProfile));
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+export default connect(mapStateToProps, { createProfile })(
+  withRouter(CreateProfile)
+);

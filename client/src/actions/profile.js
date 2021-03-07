@@ -41,10 +41,10 @@ export const getProfileById = (userId) => async (dispatch) => {
 
 export const getProfilesByName = (name) => async (dispatch) => {
   try {
-    console.log(name);
     const res = await axios.get(
       `/api/profile/allProfiles/profilesByName/${name}`
     );
+    console.log(res.data);
     dispatch({
       type: GET_PROFILES,
       payload: res.data,
@@ -92,6 +92,7 @@ export const createProfile = (formData, history, edit = false) => async (
   dispatch
 ) => {
   try {
+    console.log(formData);
     const config = {
       headers: {
         'Content-Type': 'application/json',

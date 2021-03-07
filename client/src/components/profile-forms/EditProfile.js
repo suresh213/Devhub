@@ -8,8 +8,10 @@ const EditProfile = ({
   history,
   createProfile,
   getCurrentProfile,
+  auth: { user },
 }) => {
   const [formData, setformData] = useState({
+    name: '',
     company: '',
     location: '',
     website: '',
@@ -51,6 +53,7 @@ const EditProfile = ({
   useEffect(() => {
     getCurrentProfile();
     setformData({
+      name: loading || user.name,
       bio: loading || !profile.bio ? '' : profile.bio,
       location: loading || !profile.location ? '' : profile.location,
       website: loading || !profile.website ? '' : profile.website,
@@ -245,6 +248,7 @@ EditProfile.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
 };
 const mapStateToProps = (state) => ({
+  auth: state.auth,
   profile: state.profile,
 });
 export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
