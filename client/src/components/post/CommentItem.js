@@ -28,9 +28,10 @@ const CommentItem = ({
           <button
             onClick={() => removeComment(postId, _id)}
             type='button'
-            className='btn-danger'
+            className='btn btn-danger'
           >
-            <i className='fas fa-times'></i>
+            Delete Comment
+            {' '}<i className='fas fa-times'></i>
           </button>
         )}
       </div>

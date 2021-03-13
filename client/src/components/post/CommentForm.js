@@ -8,7 +8,7 @@ const CommentForm = ({ postId, addComment }) => {
 
   return (
     <div className='post-form'>
-      <div className='bg-primary p'>
+      <div>
         <h3>Comments</h3>
       </div>
       <form
@@ -28,7 +28,11 @@ const CommentForm = ({ postId, addComment }) => {
           placeholder='Add a comment'
           required
         ></textarea>
-        <input type='submit' className='btn btn-dark my-1' value='Submit' />
+        <input
+          type='submit'
+          className='btn btn-dark my-1 w-20'
+          value='Submit'
+        />
       </form>
     </div>
   );

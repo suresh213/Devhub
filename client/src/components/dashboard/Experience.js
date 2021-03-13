@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 import { deleteExperience } from '../../actions/profile';
 
 const Experience = ({ experience, deleteExperience }) => {
-  console.log(experience);
-
   return (
     <Fragment>
       <div className='profile-exp bg-white'>

@@ -20,6 +20,7 @@ const DashBoard = ({
   if (loading && profile === null) {
     return <Spinner />;
   }
+  console.log(user,profile);
   return (
     <Fragment>
       <h1 className='large text-primary'>Dashboard</h1>
@@ -27,9 +28,7 @@ const DashBoard = ({
         <div>
           <div className='profile-head'>
             <img src={profile && profile.user && profile.user.avatar} alt='' />
-            <span>
-              <h2> {user && user.name}</h2>
-            </span>
+            <h2> {user && user.name}</h2>
           </div>
           {profile && (
             <div>

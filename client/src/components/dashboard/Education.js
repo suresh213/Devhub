@@ -8,7 +8,7 @@ const Education = ({ education, deleteEducation }) => {
 
   return (
     <Fragment>
-      <div className=' bg-white'>
+      <div className='profile-exp bg-white'>
         <h1 className='my-2'>Education</h1>
         {education.map((item) => (
           <div key={item._id}>

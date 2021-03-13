@@ -16,10 +16,17 @@ const Profile = ({
   auth,
   match,
 }) => {
-  
   useEffect(() => {
     getProfileById(match.params.id);
   }, [getProfileById]);
+
+  if (
+    auth.isAuthenticated &&
+    auth.loading === false &&
+    profile.user._id === auth.user._id
+  ) {
+    return <Redirect to='/dashboard' />;
+  }
 
   return (
     <Fragment>
@@ -27,13 +34,13 @@ const Profile = ({
         <Spinner />
       ) : (
         <Fragment>
-          {auth.isAuthenticated &&
+          {/* {auth.isAuthenticated &&
             auth.loading === false &&
             profile.user._id === auth.user._id && (
               <Link to='/edit-profile' className='btn btn-dark'>
                 Edit profile
               </Link>
-            )}
+            )} */}
           <Link to='/developers' className='btn btn-light'>
             Back to profiles
           </Link>
