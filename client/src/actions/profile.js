@@ -93,7 +93,6 @@ export const createProfile = (formData, history, edit = false) => async (
   dispatch
 ) => {
   try {
-    console.log(formData);
     const config = {
       headers: {
         'Content-Type': 'application/json',

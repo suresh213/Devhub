@@ -11,6 +11,10 @@ app.get('/', (req, res) => {
 
 app.use('/api/login', require('./routes/api/login'));
 app.use('/api/register', require('./routes/api/register'));
+
+app.use('/api/user/follow', require('./routes/api/UserFollow'));
+app.use('/api/user/unfollow', require('./routes/api/UserFollow'));
+
 app.use('/api/profile/me', require('./routes/api/userProfile'));
 app.use(
   '/api/profile/upload/profile-pic',

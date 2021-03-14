@@ -1,15 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { followUser, unFollowUser } from '../../actions/user';
 const ProfileItem = ({
   profile: {
-    user: { _id, name, avatar },
+    user: { _id, name, avatar, followers },
     status,
     company,
     location,
     skills,
   },
+  auth,
 }) => {
+  const [isFollowed, setIsFollowed] = useState(false);
+  useEffect(() => {
+    if (auth.user) {
+      let Followed = followers.filter((item) => item === auth.user._id);
+      if (Followed.length > 0) {
+        setIsFollowed(true);
+      }
+      console.log(isFollowed);
+    }
+  }, [followers]);
+  const handleFollow = () => {
+    if (isFollowed) {
+      setIsFollowed(false);
+      unFollowUser(_id);
+    } else {
+      setIsFollowed(true);
+      followUser(_id);
+    }
+  };
   return (
     <div className='profile bg-light'>
       <img src={avatar} alt='avatar' className='round-img' />
@@ -32,10 +54,23 @@ const ProfileItem = ({
           </li>
         ))}
       </ul>
+      <button
+        onClick={handleFollow}
+        type='button'
+        className={isFollowed ? 'btn btn-dark ' : 'btn btn-light'}
+      >
+        {isFollowed ? 'Unfollow' : 'Follow'}
+      </button>
     </div>
   );
 };
 ProfileItem.propTypes = {
   profile: PropTypes.object.isRequired,
 };
-export default ProfileItem;
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+});
+
+export default connect(mapStateToProps, { followUser, unFollowUser })(
+  ProfileItem
+);
