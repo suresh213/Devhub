@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { followUser, unFollowUser } from '../../actions/user';
 const ProfileItem = ({
+  followUser,
+  unFollowUser,
   profile: {
     user: { _id, name, avatar, followers },
     status,
@@ -11,18 +13,20 @@ const ProfileItem = ({
     location,
     skills,
   },
-  auth,
+  auth: { user },
 }) => {
+  console.log(user);
   const [isFollowed, setIsFollowed] = useState(false);
   useEffect(() => {
-    if (auth.user) {
-      let Followed = followers.filter((item) => item === auth.user._id);
-      if (Followed.length > 0) {
+    if (user) {
+      let followed = followers.includes(user._id);
+      if (followed) {
         setIsFollowed(true);
       }
       console.log(isFollowed);
     }
   }, [followers]);
+
   const handleFollow = () => {
     if (isFollowed) {
       setIsFollowed(false);
@@ -54,13 +58,15 @@ const ProfileItem = ({
           </li>
         ))}
       </ul>
-      <button
-        onClick={handleFollow}
-        type='button'
-        className={isFollowed ? 'btn btn-dark ' : 'btn btn-light'}
-      >
-        {isFollowed ? 'Unfollow' : 'Follow'}
-      </button>
+      {_id !== user._id && (
+        <button
+          onClick={handleFollow}
+          type='button'
+          className={isFollowed ? 'btn btn-dark ' : 'btn btn-light'}
+        >
+          {isFollowed ? 'Unfollow' : 'Follow'}
+        </button>
+      )}
     </div>
   );
 };

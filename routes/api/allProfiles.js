@@ -6,7 +6,12 @@ const User = require('../../models/User');
 // Get all profiles
 router.get('/', async (req, res) => {
   try {
-    let profiles = await Profile.find().populate('user', ['name', 'avatar']);
+    let profiles = await Profile.find().populate('user', [
+      'name',
+      'avatar',
+      'followers',
+      'following',
+    ]);
     res.json(profiles);
   } catch (err) {
     console.log(err.message);
@@ -19,8 +24,7 @@ router.get('/profilesByName/:name', async (req, res) => {
     console.log(req.params.name);
     let profiles = await Profile.find({
       name: req.params.name,
-    }).populate('user', ['name', 'avatar']);
-    console.log(profiles);
+    }).populate('user', ['name', 'avatar', 'followers', 'following']);
     res.json(profiles);
   } catch (err) {
     console.log(err.message);

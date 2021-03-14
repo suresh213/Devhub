@@ -19,7 +19,6 @@ const PostItem = ({
       if (liked.length > 0) {
         setIsLiked(true);
       }
-      console.log(isLiked);
     }
   }, [likes]);
   const handleLikes = () => {

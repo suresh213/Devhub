@@ -92,6 +92,8 @@ const DashBoard = ({
               />
             </div>
             <h2> {user && user.name}</h2>
+            <h3>Following: {user.following.length}</h3>
+            <h3>Followers: {user.followers.length}</h3>
           </div>
           {profile && (
             <div>

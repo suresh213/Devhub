@@ -4,11 +4,16 @@ import { toast } from 'react-toastify';
 
 export const followUser = (id) => async (dispatch) => {
   try {
+    console.log(id);
     const res = await axios.put(`/api/user/follow/${id}`);
-    // dispatch({
-    //   type: UPDATE_FOLLOWERS,
-    //   payload: { id, likes: res.data },
-    // });
+    dispatch({
+      type: UPDATE_FOLLOWERS,
+      payload: { id, likes: res.data },
+    });
+    dispatch({
+      type: UPDATE_FOLLOWING,
+      payload: { id, likes: res.data },
+    });
   } catch (err) {
     // dispatch({
     //   type: UPDATE_FOLLOWERS,
@@ -19,10 +24,14 @@ export const followUser = (id) => async (dispatch) => {
 export const unFollowUser = (id) => async (dispatch) => {
   try {
     const res = await axios.delete(`/api/user/unfollow/${id}`);
-    // dispatch({
-    //   type: UPDATE_FOLLOWERS,
-    //   payload: { id, likes: res.data },
-    // });
+    dispatch({
+      type: UPDATE_FOLLOWERS,
+      payload: { id, likes: res.data },
+    });
+    dispatch({
+      type: UPDATE_FOLLOWING,
+      payload: { id, likes: res.data },
+    });
   } catch (err) {
     // dispatch({
     //   type: UPDATE_FOLLOWERS,

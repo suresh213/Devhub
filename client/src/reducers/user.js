@@ -1,31 +1,35 @@
-// import { UPDATE_FOLLOWERS, UPDATE_FOLLOWING } from '../actions/types';
+import { UPDATE_FOLLOWERS, UPDATE_FOLLOWING } from '../actions/types';
 
-// const initialState = {
-//   posts: [],
-//   post: null,
-//   loading: true,
-//   errors: {},
-// };
+const initialState = {
+  profile: null,
+  profiles: [],
+  loading: true,
+  error: {},
+};
 
-// export default function (state = initialState, action) {
-//   const { type, payload } = action;
-
-//   switch (type) {
-//     case UPDATE_FOLLOWERS:
-//       return {
-//         ...state,
-//         posts: state.posts.map((post) =>
-//           post._id === payload.id ? { ...post, likes: payload.likes } : post
-//         ),
-//       };
-//     case UPDATE_FOLLOWING:
-//       return {
-//         ...state,
-//         posts: state.posts.map((post) =>
-//           post._id === payload.id ? { ...post, likes: payload.likes } : post
-//         ),
-//       };
-//     default:
-//       return state;
-//   }
-// }
+export default function (state = initialState, action) {
+  const { type, payload } = action;
+  console.log(state);
+  switch (type) {
+    case UPDATE_FOLLOWERS:
+      return {
+        ...state,
+        profiles: state.profiles.map((profile) =>
+          profile._id === payload.user1
+            ? { ...profile, followers: payload.followers }
+            : profile
+        ),
+      };
+    case UPDATE_FOLLOWING:
+      return {
+        ...state,
+        profiles: state.profiles.map((profile) =>
+          profile._id === payload.user2
+            ? { ...profile, following: payload.following }
+            : profile
+        ),
+      };
+    default:
+      return state;
+  }
+}

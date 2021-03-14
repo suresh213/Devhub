@@ -147,6 +147,7 @@ img {
   border-radius: 25px;
 }
 
+
 .badge {
   font-size: 0.8rem;
   padding: 0.1rem;
@@ -186,6 +187,24 @@ img {
 .alert-dark {
   background: var(--dark-color);
   color: #fff;
+}
+.btn-follow{
+  display: inline-block;
+  background: rgb(11, 126, 202);
+  color: rgb(255, 255, 255);
+  padding: 0.2rem 0.7rem;
+  font-size: 1rem;
+  margin-right: 0;
+  border-radius: 5px;
+}
+.btn-unfollow{
+  display: inline-block;
+  background: rgb(11, 126, 202);
+  color: rgb(255, 255, 255);
+  padding: 0.2rem 0.7rem;
+  font-size: 1rem;
+  margin-right: 0;
+  border-radius: 5px;
 }
 
 .btn-danger,
