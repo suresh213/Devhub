@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const auth = require('../../middleware/auth');
 const Profile = require('../../models/Profile');
+const User = require('../../models/User');
 
 router.get('/', auth, async (req, res) => {
   const profile = await Profile.findOne({ user: req.user.id }).populate(

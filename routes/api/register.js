@@ -45,18 +45,18 @@ router.post(
           .json({ errors: [{ msg: 'User already exists' }] });
       }
 
-      // Get Avatar from grvatar
-      const avatar = gravatar.url(email, {
-        s: '200',
-        r: 'pg',
-        d: 'mm',
-      });
+      // // Get Avatar from grvatar
+      // const avatar = gravatar.url(email, {
+      //   s: '200',
+      //   r: 'pg',
+      //   d: 'mm',
+      // });
 
       // Create instance for DB
       user = new User({
         name,
         email,
-        avatar,
+        // avatar,
         password,
       });
 

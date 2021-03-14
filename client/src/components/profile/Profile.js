@@ -23,6 +23,8 @@ const Profile = ({
   if (
     auth.isAuthenticated &&
     auth.loading === false &&
+    profile &&
+    profile.user &&
     profile.user._id === auth.user._id
   ) {
     return <Redirect to='/dashboard' />;

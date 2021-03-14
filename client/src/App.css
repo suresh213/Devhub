@@ -397,11 +397,7 @@ button {
 
 /* Profile Page */
 
-.profile-head {
-  margin-top: 1rem;
-  align-items: center;
-}
-.profile-head > img {
+/* .profile-head > img {
   width: 150px;
   height: 150px;
   border-radius: 50%;
@@ -409,7 +405,7 @@ button {
 }
 .profile-head > span {
   padding: 10px;
-}
+} */
 .profile-grid {
   display: grid;
   grid-template-areas:
@@ -545,6 +541,47 @@ button {
   font-size: 0.8rem;
   margin-bottom: 0.5rem;
 }
+
+.profile-head {
+  margin-top: 1rem;
+  text-align: center;
+  align-items: center;
+  background-color: #0077b5;
+}
+.profile-pic {
+  justify-content: center;
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: multiply;
+  vertical-align: middle;
+  text-align: center;
+  color: transparent;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.profile-pic:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10000;
+  color: #fff;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.profile-pic span {
+  display: inline-block;
+  padding-top: 4rem;
+}
+
+.profile-pic-div input[type='file'] {
+  display: none;
+  cursor: pointer;
+}
+
 .dash-buttons {
   display: block;
   width: 100%;

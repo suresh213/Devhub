@@ -14,6 +14,10 @@ const Profiles = ({ getProfiles, profile: { loading, profiles } }) => {
   }, [getProfiles]);
 
   useEffect(() => {
+    setResultProfiles(profiles);
+  }, []);
+
+  useEffect(() => {
     if (name.length === 0) {
       setResultProfiles(profiles);
       return;
@@ -33,7 +37,6 @@ const Profiles = ({ getProfiles, profile: { loading, profiles } }) => {
       ) : (
         <Fragment>
           <input
-            
             type='text'
             onChange={(e) => setName(e.target.value)}
             placeholder='Enter name to search'

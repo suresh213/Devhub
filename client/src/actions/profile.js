@@ -17,6 +17,7 @@ export const getCurrentProfile = () => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
+    console.log(err);
     dispatch({
       type: PROFILE_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
@@ -106,6 +107,40 @@ export const createProfile = (formData, history, edit = false) => async (
 
     toast(edit ? 'Profile Updated' : 'Profile Created');
     history.push('/dashboard');
+  } catch (err) {
+    const errors = err.response.data.errors;
+    if (errors) {
+      errors.forEach((error) => toast(error.msg));
+    }
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// upload profile picture
+export const uploadProfilePicture = ({ profilePicture }) => async (
+  dispatch
+) => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'multipart/formData',
+      },
+    };
+    const body = JSON.stringify({ profilePicture });
+    const res = await axios.put(
+      '/api/profile/upload/profile-pic',
+      body,
+      config
+    );
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: res.data,
+    });
+
+    toast('Profile Picture Updated');
   } catch (err) {
     const errors = err.response.data.errors;
     if (errors) {
