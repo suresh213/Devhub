@@ -10,8 +10,9 @@ router.put('/:id', auth, async (req, res) => {
     if (!user) {
       return res.status(400).json({ msg: 'No user found' });
     }
+    console.log(user);
     if (
-      user.followers.filter((i) => i.user.toString() === req.user.id).length > 0
+      user.followers.filter((i) => i.toString() === req.user.id).length > 0
     ) {
       return res.status(400).json({ msg: 'User already followed' });
     }
@@ -28,7 +29,7 @@ router.put('/:id', auth, async (req, res) => {
       following: user.following,
     };
     res.json(result);
-  } catch (error) {
+  } catch (err) {
     console.log(err.message);
     if (err.kind == 'ObjectId') {
       return res.status(400).json({ msg: 'No user found' });
@@ -36,6 +37,8 @@ router.put('/:id', auth, async (req, res) => {
     return res.status(500).json('Server error');
   }
 });
+
+
 router.delete('/:id', auth, async (req, res) => {
   try {
     let user = await User.findById(req.params.id);

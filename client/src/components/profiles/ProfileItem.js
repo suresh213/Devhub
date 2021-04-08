@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { followUser, unFollowUser } from '../../actions/user';
+import { UPDATE_FOLLOWERS, UPDATE_FOLLOWING } from '../../actions/types';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 const ProfileItem = ({
-  followUser,
-  unFollowUser,
   profile: {
     user: { _id, name, avatar, followers },
     status,
@@ -15,7 +15,6 @@ const ProfileItem = ({
   },
   auth: { user },
 }) => {
-  console.log(user);
   const [isFollowed, setIsFollowed] = useState(false);
   useEffect(() => {
     if (user) {
@@ -27,12 +26,54 @@ const ProfileItem = ({
     }
   }, [followers]);
 
+  const followUser = (id) => {
+    console.log(id);
+    axios
+      .put(`/api/user/follow/${id}`)
+      .then((res) => {
+        console.log(res);
+        setIsFollowed(true); // dispatch({
+        //   type: UPDATE_FOLLOWERS,
+        //   payload: { id, likes: res.data },
+        // });
+        // dispatch({
+        //   type: UPDATE_FOLLOWING,
+        //   payload: { id, likes: res.data },
+        // });
+      })
+      .catch((err) => {
+        console.log(err);
+        // dispatch({
+        //   type: UPDATE_FOLLOWERS,
+        //   payload: { msg: err.response.statusText, status: err.response.status },
+        // });
+      });
+  };
+  const unFollowUser = (id) => {
+    axios.delete(`/api/user/unfollow/${id}`)
+      .then((res) => {
+        console.log(res);
+        setIsFollowed(false); // dispatch({
+        //   type: UPDATE_FOLLOWERS,
+        //   payload: { id, likes: res.data },
+        // });
+        // dispatch({
+        //   type: UPDATE_FOLLOWING,
+        //   payload: { id, likes: res.data },
+        // });
+      })
+      .catch((err) => {
+        console.log(err);
+        // dispatch({
+        //   type: UPDATE_FOLLOWERS,
+        //   payload: { msg: err.response.statusText, status: err.response.status },
+        // });
+      });
+  };
   const handleFollow = () => {
     if (isFollowed) {
-      setIsFollowed(false);
       unFollowUser(_id);
     } else {
-      setIsFollowed(true);
       followUser(_id);
     }
   };
@@ -77,6 +118,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
 });
 
-export default connect(mapStateToProps, { followUser, unFollowUser })(
-  ProfileItem
-);
+export default connect(mapStateToProps)(ProfileItem);
