@@ -10,26 +10,30 @@ const Education = ({ education, deleteEducation }) => {
     <Fragment>
       <div className='profile-exp bg-white'>
         <h1 className='my-2'>Education</h1>
-        {education.map((item) => (
-          <div key={item._id}>
-            <h2>{item.school}</h2>
-            <h3 className=''>{item.degree}</h3>
-            <p>
-              <Moment format='YYYY/MM/DD'>{item.from}</Moment> -
-              {item.current ? (
-                'Present'
-              ) : (
-                <Moment format='YYYY/MM/DD'>{item.to}</Moment>
-              )}
-            </p>
-            <button
-              onClick={() => deleteEducation(item._id)}
-              className='btn btn-danger'
-            >
-              Delete
-            </button>
-          </div>
-        ))}
+        {education.length > 0 ? (
+          education.map((item) => (
+            <div key={item._id}>
+              <h2>{item.school}</h2>
+              <h3 className=''>{item.degree}</h3>
+              <p>
+                <Moment format='YYYY/MM/DD'>{item.from}</Moment> -
+                {item.current ? (
+                  'Present'
+                ) : (
+                  <Moment format='YYYY/MM/DD'>{item.to}</Moment>
+                )}
+              </p>
+              <button
+                onClick={() => deleteEducation(item._id)}
+                className='btn btn-danger'
+              >
+                Delete
+              </button>
+            </div>
+          ))
+        ) : (
+          <div>Add Some details</div>
+        )}
       </div>
     </Fragment>
   );

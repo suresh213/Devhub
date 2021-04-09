@@ -11,11 +11,10 @@ router.put('/:id', auth, async (req, res) => {
       return res.status(400).json({ msg: 'No user found' });
     }
     console.log(user);
-    if (
-      user.followers.filter((i) => i.toString() === req.user.id).length > 0
-    ) {
+    if (user.followers.filter((i) => i.toString() === req.user.id).length > 0) {
       return res.status(400).json({ msg: 'User already followed' });
     }
+
     user.followers.unshift(req.user.id);
     await user.save();
 
@@ -38,18 +37,18 @@ router.put('/:id', auth, async (req, res) => {
   }
 });
 
-
 router.delete('/:id', auth, async (req, res) => {
   try {
     let user = await User.findById(req.params.id);
     if (!user) {
       return res.status(400).json({ msg: 'No user found' });
     }
-    // if (
-    //   user.followers.filter((i) => i.user.toString() === req.user.id).length > 0
-    // ) {
-    //   return res.status(400).json({ msg: 'User already followed' });
-    // }
+    if (
+      user.followers.filter((i) => i.user.toString() === req.user.id).length ===
+      0
+    ) {
+      return res.status(400).json({ msg: 'User not followed' });
+    }
     let removeIndex = user.followers
       .map((i) => i.toString())
       .indexOf(req.user.id);

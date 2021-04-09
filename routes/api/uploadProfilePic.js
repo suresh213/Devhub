@@ -5,21 +5,20 @@ const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 
 router.put('/', auth, async (req, res) => {
-  //const { avatar } = req.body;
-  console.log(req.files, req.body);
+  const { image } = req.body;
+  if (!image) {
+    return res.status(401).json({ msg: 'No image found' });
+  }
   const data = {
-    avatar: req.files,
+    avatar: image,
   };
-  console.log(data);
-  // const profile = await User.findOneAndUpdate(
-  //   { _id: req.user.id },
-  //   { $set: avatar },
-  //   { new: true }
-  // );
-  // if (!profile) {
-  //   return res.status(401).json({ msg: 'No user found' });
-  // }
-  // return res.json(profile);
+  const user = await User.findOneAndUpdate(
+    { _id: req.user.id },
+    { $set: data },
+    { new: true }
+  );
+  await user.save();
+  return res.status(200).json({ msg: 'Profile picture updated' });
 });
 
 module.exports = router;

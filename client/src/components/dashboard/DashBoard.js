@@ -10,56 +10,48 @@ import Education from './Education';
 import axios from 'axios';
 import BlankProfilePicture from '../../common/assets/dashboard/blank-profile-picture.png';
 
-const base64Flag = 'data:image.jpeg;base64,';
 const DashBoard = ({
   getCurrentProfile,
   auth: { user },
   profile: { profile, loading },
 }) => {
-  const [file, setFile] = useState('');
-  const [profilePicture, setProfilePicture] = useState('');
+  const [profilePicture, setProfilePicture] = useState(user && user.avatar);
+  console.log(profilePicture);
   useEffect(() => {
     getCurrentProfile();
   }, [getCurrentProfile]);
 
-  // useEffect(() => {
-  //   console.log(profilePicture);
-  //   uploadProfilePicture(profilePicture);
-  // }, [profilePicture]);
-
   if (loading && profile === null) {
     return <Spinner />;
   }
-
-  const arrayBufferToBase64 = (buffer) => {
-    var binary = '';
-    var bytes = [].slice.call(new Uint8Array(buffer));
-    bytes.forEach((b) => (binary += String.fromCharCode(b)));
-    return window.btoa(binary);
+  const convertTobase64 = async (file) => {
+    return new Promise((resolve, reject) => {
+      let fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
   };
-
-  const getbase64 = async (file) => {
-    const formdata = new FormData();
-    formdata.append('file', file);
-    try {
-      const res = await axios.put('/api/profile/upload/profile-pic', formdata, {
+  const uploadImage = async (file) => {
+    const imageStr = await convertTobase64(file);
+    const res = await axios.put(
+      '/api/profile/upload/profile-pic',
+      { image: imageStr },
+      {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          'Content-Type': 'application/json',
         },
-      });
-
-      const buffer = res.data;
-      const imagestr = arrayBufferToBase64(buffer.data.data);
-      setProfilePicture(imagestr);
-    } catch (err) {
-      console.log('error' + err);
-    }
+      }
+    );
+    setProfilePicture(imageStr);
   };
-
   const handleChange = (e) => {
     const file = e.target.files[0];
-    setFile(file);
-    getbase64(file);
+    uploadImage(file);
   };
 
   return (
@@ -73,13 +65,11 @@ const DashBoard = ({
                 <div
                   className='profile-pic'
                   style={{
-                    backgroundImage: `url(${base64Flag + profile})`,
+                    backgroundImage: profilePicture
+                      ? `url(${profilePicture})`
+                      : `url(${BlankProfilePicture})`,
                   }}
                 >
-                  {/* <img
-                    src={profile && profile.user && profile.user.avatar}
-                    alt=''
-                  /> */}
                   <span className='glyphicon glyphicon-camera'></span>
                   <span>Edit</span>
                 </div>
@@ -92,8 +82,8 @@ const DashBoard = ({
               />
             </div>
             <h2> {user && user.name}</h2>
-            <h3>Following: {user.following.length}</h3>
-            <h3>Followers: {user.followers.length}</h3>
+            <h3>Following: {user ? user.following.length : 0}</h3>
+            <h3>Followers: {user ? user.followers.length : 0}</h3>
           </div>
           {profile && (
             <div>

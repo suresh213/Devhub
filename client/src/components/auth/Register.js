@@ -64,7 +64,6 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
               value={password}
               onChange={(e) => onChange(e)}
               name='password'
-              minLength='6'
             />
           </div>
           <div className='form-group'>
@@ -74,7 +73,6 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
               name='password2'
               value={password2}
               onChange={(e) => onChange(e)}
-              minLength='6'
             />
           </div>
           <input type='submit' className='btn btn-primary' value='Register' />

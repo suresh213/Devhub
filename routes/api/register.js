@@ -25,9 +25,6 @@ router.post(
   [
     check('name', 'Name is required').not().isEmpty(),
     check('email', 'Email is required').isEmail(),
-    check('password', 'Password should be minimum of length 6').isLength({
-      min: 6,
-    }),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -45,18 +42,10 @@ router.post(
           .json({ errors: [{ msg: 'User already exists' }] });
       }
 
-      // // Get Avatar from grvatar
-      // const avatar = gravatar.url(email, {
-      //   s: '200',
-      //   r: 'pg',
-      //   d: 'mm',
-      // });
-
       // Create instance for DB
       user = new User({
         name,
         email,
-        // avatar,
         password,
       });
 
