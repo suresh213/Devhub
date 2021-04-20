@@ -41,12 +41,13 @@ router.post(
           .status(400)
           .json({ errors: [{ msg: 'User already exists' }] });
       }
-
+      const avatar = 'http://www.gravatar.com/avatar/?d=mp';
       // Create instance for DB
       user = new User({
         name,
         email,
         password,
+        avatar,
       });
 
       // Hash Password

@@ -36,19 +36,23 @@ const Profiles = ({ getProfiles, profile: { loading, profiles } }) => {
         <Spinner />
       ) : (
         <Fragment>
-          <input
-            type='text'
-            onChange={(e) => setName(e.target.value)}
-            placeholder='Enter name to search'
-          />
-          <div className='profiles'>
-            {resultProfiles.length > 0 ? (
-              resultProfiles.map((profile) => (
-                <ProfileItem key={profile._id} profile={profile} />
-              ))
-            ) : (
-              <h4>No Profiles Found</h4>
-            )}
+          <div className='profiles-page'>
+            <input
+              type='text'
+              onChange={(e) => setName(e.target.value)}
+              placeholder='Enter name to search'
+            />
+            <div className='profiles'>
+              {resultProfiles.length > 0 ? (
+                resultProfiles.map((profile) => (
+                  <ProfileItem key={profile._id} profile={profile} />
+                ))
+              ) : (
+                <div>
+                  <h4>No Profiles Found</h4>
+                </div>
+              )}
+            </div>
           </div>
         </Fragment>
       )}

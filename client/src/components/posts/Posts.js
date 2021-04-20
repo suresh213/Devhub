@@ -15,18 +15,21 @@ const Posts = ({ getAllPosts, post: { posts, loading } }) => {
     <Spinner />
   ) : (
     <Fragment>
-      <div className='form-container'>
-        <PostForm />
-        <h3>All Posts</h3>
-        {posts ? (
-          <div className='posts'>
-            {posts.map((post) => (
-              <PostItem key={post._id} post={post} />
-            ))}
-          </div>
-        ) : (
-          <h3>No posts Found</h3>
-        )}
+      <div className='post-page'>
+        <div className='connect-people'></div>
+        <div className='form-container'>
+          <PostForm />
+          <h3>All Posts</h3>
+          {posts ? (
+            <div className='posts'>
+              {posts.map((post) => (
+                <PostItem key={post._id} post={post} />
+              ))}
+            </div>
+          ) : (
+            <h3>No posts Found</h3>
+          )}
+        </div>
       </div>
     </Fragment>
   );

@@ -1,5 +1,5 @@
 /* Global Styles */
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap');
 :root {
   --primary-color: #17a2b8;
   --primary-color: #145275;
@@ -81,31 +81,24 @@ img {
 .p {
   padding: 0.5rem;
 }
-
 .p-1 {
   padding: 1rem;
 }
-
 .p-2 {
   padding: 2rem;
 }
-
 .p-3 {
   padding: 3rem;
 }
-
 .py {
   padding: 0.5rem 0;
 }
-
 .py-1 {
   padding: 1rem 0;
 }
-
 .py-2 {
   padding: 2rem 0;
 }
-
 .py-3 {
   padding: 3rem 0;
 }
@@ -114,31 +107,24 @@ img {
 .m {
   margin: 0.5rem;
 }
-
 .m-1 {
   margin: 1rem;
 }
-
 .m-2 {
   margin: 2rem;
 }
-
 .m-3 {
   margin: 3rem;
 }
-
 .my {
   margin: 0.5rem 0;
 }
-
 .my-1 {
   margin: 1rem 0;
 }
-
 .my-2 {
   margin: 2rem 0;
 }
-
 .my-3 {
   margin: 3rem 0;
 }
@@ -191,12 +177,10 @@ img {
 .alert-light {
   color: #333;
 }
-
 .btn-light {
   background: var(--primary-color);
   color: white;
 }
-
 .btn-dark,
 .bg-dark,
 .badge-dark,
@@ -204,21 +188,19 @@ img {
   background: var(--dark-color);
   color: #fff;
 }
-
 .btn-follow {
   display: inline-block;
-  background: #0b7eca;
-  color: white;
+  background: rgb(11, 126, 202);
+  color: rgb(255, 255, 255);
   padding: 0.2rem 0.7rem;
   font-size: 1rem;
   margin-right: 0;
   border-radius: 5px;
 }
-
 .btn-unfollow {
   display: inline-block;
-  background: #0b7eca;
-  color: white;
+  background: rgb(11, 126, 202);
+  color: rgb(255, 255, 255);
   padding: 0.2rem 0.7rem;
   font-size: 1rem;
   margin-right: 0;
@@ -281,50 +263,53 @@ img {
 }
 
 /* Forms */
+
 .login {
   vertical-align: middle;
   display: grid;
   grid-template-columns: 2fr 2fr;
   text-align: center;
   align-items: center;
-}
+  // margin-top: 50px;
+  .side-img {
+    img {
+      width: 250px;
+      height: 250px;
+    }
+  }
 
-.login .side-img img {
-  width: 250px;
-  height: 250px;
-}
-
-.login .form {
-  width: 80%;
-  padding: 20px 0;
-  margin: auto;
-  background-color: #d5d5d5;
-  border-radius: 15px;
-  text-align: center;
-}
-
-.login .form .lead {
-  display: flex;
-  justify-content: center;
-  grid-column-gap: 10px;
-  align-items: center;
-}
-
-.login .form .lead h5 {
-  font-size: 30px;
-}
-
-.login .form .form-group {
-  align-items: center;
-  text-align: center;
-}
-
-.login .form .form-group input {
-  width: 80%;
-  border-radius: 25px;
-  padding: 7px 0px 7px 20px;
-  background-color: #f7f7f7;
-  border: 2px solid #eeeeee;
+  .form {
+    width: 80%;
+    padding: 20px 0;
+    margin: auto;
+    background-color: #d5d5d5;
+    border-radius: 15px;
+    text-align: center;
+    .lead {
+      display: flex;
+      justify-content: center;
+      grid-column-gap: 10px;
+      align-items: center;
+      h5 {
+        font-size: 30px;
+      }
+    }
+    .form-group {
+      align-items: center;
+      text-align: center;
+      input {
+        width: 80%;
+        border-radius: 25px;
+        padding: 7px 0px 7px 20px;
+        background-color: #f7f7f7;
+        border: 2px solid #eeeeee;
+      }
+    }
+    .foot {
+      // width: 70%;
+      // display: flex;
+    }
+  }
 }
 
 .form-container {
@@ -349,7 +334,6 @@ img {
   /* background-color: #bec1c2; */
   border-radius: 10px;
 }
-
 .form .form-group {
   margin: 1.2rem 0;
 }
@@ -359,17 +343,18 @@ img {
   margin-top: 0.3rem;
   color: #888;
 }
-
 .form > input {
   width: 80%;
 }
-
 .form input[type='text'],
 .form input[type='email'],
 .form input[type='password'],
 .form input[type='date'],
 .form select,
 .form textarea {
+  // display: block;
+  // width: 100%;
+  // padding: 0.4rem;
   font-size: 1.2rem;
   border: 1px solid #ccc;
   outline: none;
@@ -392,19 +377,15 @@ button {
 .form .social-input i.fa-twitter {
   color: #38a1f3;
 }
-
 .form .social-input i.fa-facebook {
   color: #3b5998;
 }
-
 .form .social-input i.fa-instagram {
   color: #3f729b;
 }
-
 .form .social-input i.fa-youtube {
   color: #c4302b;
 }
-
 .form .social-input i.fa-linkedin {
   color: #0077b5;
 }
@@ -454,7 +435,7 @@ button {
 /* Landing Page */
 .landing {
   position: relative;
-  background: url("./img/showcase.jpg") no-repeat center center/cover;
+  background: url('./img/showcase.jpg') no-repeat center center/cover;
   height: 100vh;
 }
 
@@ -473,17 +454,15 @@ button {
 /* Profiles Page */
 .profiles-page {
   text-align: center;
+  input {
+    width: 50%;
+    border-radius: 25px;
+    padding: 10px 0px 10px 20px;
+    background-color: #f7f7f7;
+    border: 2px solid #eeeeee;
+    outline: none;
+  }
 }
-
-.profiles-page input {
-  width: 50%;
-  border-radius: 25px;
-  padding: 10px 0px 10px 20px;
-  background-color: #f7f7f7;
-  border: 2px solid #eeeeee;
-  outline: none;
-}
-
 .profiles {
   margin-top: 30px;
   display: grid;
@@ -491,31 +470,34 @@ button {
   grid-column-gap: 20px;
   text-align: center;
   align-items: center;
+  h4 {
+    display: block;
+    margin: auto;
+    text-align: center;
+    align-items: center;
+    font-size: 23px;
+  }
 }
-
-.profiles h4 {
-  display: block;
-  margin: auto;
-  text-align: center;
-  align-items: center;
-  font-size: 23px;
-}
-
 .profile-item {
+  // display: grid;
+  // grid-template-columns: 2fr 4fr 2fr;
   text-align: center;
+  img {
+    width: 90px;
+    height: 90px;
+    border-radius: 100%;
+    border: 2px solid rgb(220, 220, 220);
+  }
   align-items: center;
+  // grid-gap: 2rem;
   padding: 0.5rem 1rem;
+  // line-height: 1.8;
   margin-bottom: 1rem;
-}
-
-.profile-item img {
-  width: 90px;
-  height: 90px;
-  border-radius: 100%;
-  border: 2px solid gainsboro;
+  // width: 20%;
 }
 
 /* Profile Page */
+
 /* .profile-head > img {
   width: 150px;
   height: 150px;
@@ -527,7 +509,11 @@ button {
 } */
 .profile-grid {
   display: grid;
-  grid-template-areas: 'top top' 'about about' 'exp edu' 'github github';
+  grid-template-areas:
+    'top top'
+    'about about'
+    'exp edu'
+    'github github';
   grid-gap: 1rem;
 }
 
@@ -573,9 +559,8 @@ button {
 .profile-edu {
   grid-area: edu;
 }
-
 .profile-exp h1 {
-  border-bottom: 1px solid #a1a1a1;
+  border-bottom: 1px solid rgb(161, 161, 161);
 }
 
 .profile-exp h2,
@@ -622,7 +607,6 @@ button {
 .post-form {
   text-align: center;
 }
-
 .post-form .post-form-header {
   background: var(--primary-color);
   padding: 0.5rem;
@@ -634,7 +618,7 @@ button {
   grid-gap: 2rem;
   align-items: center;
   border-radius: 10px;
-  border: 1px solid #aaa8a8;
+  border: 1px solid rgb(170, 168, 168);
 }
 
 .post > div:first-child {
@@ -665,7 +649,6 @@ button {
   align-items: center;
   background-color: #0077b5;
 }
-
 .profile-pic {
   justify-content: center;
   border-radius: 50%;
@@ -705,7 +688,6 @@ button {
   width: 100%;
   margin-bottom: 0.2rem;
 }
-
 .dash-buttons a {
   text-align: center;
   width: 50%;
@@ -728,51 +710,69 @@ button {
   .hide-sm {
     display: none;
   }
+
   /* Text Styles */
   .x-large {
     font-size: 3rem;
   }
+
   .large {
     font-size: 2rem;
   }
+
   .lead {
     font-size: 1rem;
   }
+
   /* Navbar */
   .navbar {
     display: block;
     text-align: center;
   }
+
   .navbar ul {
     text-align: center;
     justify-content: center;
   }
+
   .navbar h1 {
     margin-bottom: 1rem;
   }
+
   .navbar .welcome {
     display: none;
   }
+
   /* Profiles Page */
   .profile {
     grid-template-columns: 1fr;
     text-align: center;
   }
+
   .profile ul {
     display: none;
   }
   /* Profile Page */
+
   .profile-top img,
   .profile img {
     width: 200px;
     margin: auto;
   }
+
   .profile-grid {
-    grid-template-areas: 'top' 'about' 'exp' 'edu' 'github';
+    grid-template-areas:
+      'top'
+      'about'
+      'exp'
+      'edu'
+      'github';
   }
+
   .profile-about .skills {
     flex-direction: column;
   }
+
   .dash-buttons {
     display: none;
     width: 100%;
@@ -783,6 +783,7 @@ button {
     width: 100%;
     margin-bottom: 0.2rem;
   } */
+
   .post {
     grid-template-columns: 1fr;
   }

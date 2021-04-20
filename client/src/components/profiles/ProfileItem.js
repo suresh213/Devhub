@@ -50,7 +50,8 @@ const ProfileItem = ({
       });
   };
   const unFollowUser = (id) => {
-    axios.delete(`/api/user/unfollow/${id}`)
+    axios
+      .delete(`/api/user/unfollow/${id}`)
       .then((res) => {
         console.log(res);
         setIsFollowed(false); // dispatch({
@@ -78,27 +79,26 @@ const ProfileItem = ({
     }
   };
   return (
-    <div className='profile bg-light'>
-      <img src={avatar} alt='avatar' className='round-img' />
-      <div>
-        <h2>{name}</h2>
-        <p>
-          {status}
-          {company && <span> at {company} </span>}
-        </p>
-        <p className='my-1'>{location && <span>{location}</span>}</p>
-        <Link to={`/profile/${_id}`} className='btn btn-primary'>
-          View Profile
-        </Link>
-      </div>
+    <div className='profile-item bg-light'>
+      <Link to={`/profile/${_id}`}>
+        <div>
+          <img src={avatar} alt='avatar' className='round-img' />
+          <h2>{name}</h2>
+          <p>
+            {status}
+            {company && <span> at {company} </span>}
+          </p>
+          {/* <p className='my-1'>{location && <span>{location}</span>}</p> */}
+        </div>
+      </Link>
 
-      <ul>
+      {/* <ul>
         {skills.splice(0, 4).map((skill, index) => (
           <li key={index} className='text-primary'>
             <i className=' fa fa-arrow-right'></i> {skill}
           </li>
         ))}
-      </ul>
+      </ul> */}
       {_id !== user._id && (
         <button
           onClick={handleFollow}

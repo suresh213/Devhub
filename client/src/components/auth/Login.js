@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { login } from '../../actions/auth';
 import { connect } from 'react-redux';
+import developerImg from '../../common/assets/developer.png';
 toast.configure();
 
 const Login = ({ login, isAuthenticated }) => {
@@ -18,6 +19,10 @@ const Login = ({ login, isAuthenticated }) => {
   };
   const onSubmit = async (e) => {
     e.preventDefault();
+    if (!email || !password) {
+      toast.error('Enter Credentials');
+      return;
+    }
     login({ email, password });
   };
   if (isAuthenticated) {
@@ -25,39 +30,45 @@ const Login = ({ login, isAuthenticated }) => {
   }
   return (
     <Fragment>
-      <div className='form-container'>
-        <p className='lead'>
-          <i className='fas fa-user'></i>
-          <h1 className='large text-primary'>Sign In</h1>
-        </p>
-        <form className='form' onSubmit={(e) => onSubmit(e)}>
-          <div className='form-group'>
-            <input
-              type='email'
-              placeholder='Email Address'
-              name='email'
-              value={email}
-              onChange={(e) => onChange(e)}
-            />
-          </div>
-          <div className='form-group'>
-            <input
-              type='password'
-              placeholder='Password'
-              name='password'
-              value={password}
-              onChange={(e) => onChange(e)}
-            />
-          </div>
-          <input type='submit' className='btn btn-primary' value='Login' />
-        </form>
-        <div className='my-1'>
-          <p>Don't have account ?</p>{' '}
-          <span>
-            <h4>
-              <Link to='/register'>Sign Up</Link>
-            </h4>
-          </span>
+      
+      <div className='login'>
+        <div className='side-img'>
+          <img src={developerImg} alt='' />
+        </div>
+        <div>
+          <form className='form' onSubmit={(e) => onSubmit(e)}>
+            <p className='lead'>
+              <i className='fas fa-user'></i>
+              <h5 className='large text-primary'>Sign In</h5>
+            </p>
+            <div className='form-group'>
+              <input
+                type='email'
+                placeholder='Email Address'
+                name='email'
+                value={email}
+                onChange={(e) => onChange(e)}
+              />
+            </div>
+            <div className='form-group'>
+              <input
+                type='password'
+                placeholder='Password'
+                name='password'
+                value={password}
+                onChange={(e) => onChange(e)}
+              />
+            </div>
+            <button type='submit' className='btn btn-primary'>
+              Login
+            </button>
+            <div className='my-1 foot'>
+              <div>Don't have account ?</div>
+              <h4>
+                <Link to='/register'>Sign Up</Link>
+              </h4>
+            </div>
+          </form>
         </div>
       </div>
     </Fragment>
