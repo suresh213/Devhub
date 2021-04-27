@@ -37,7 +37,7 @@ router.post(
       } = req.body;
 
       const profileDetails = {};
-
+      console.log(skills);
       profileDetails.user = req.user.id;
       profileDetails.name = name;
       if (status) profileDetails.status = status;

@@ -44,8 +44,7 @@ router.delete('/:id', auth, async (req, res) => {
       return res.status(400).json({ msg: 'No user found' });
     }
     if (
-      user.followers.filter((i) => i.user.toString() === req.user.id).length ===
-      0
+      user.followers.filter((i) => i.toString() === req.user.id).length === 0
     ) {
       return res.status(400).json({ msg: 'User not followed' });
     }

@@ -12,6 +12,7 @@ import { toast } from 'react-toastify';
 export const getCurrentProfile = () => async (dispatch) => {
   try {
     const res = await axios.get('/api/profile/me');
+    console.log(res.data);
     dispatch({
       type: GET_PROFILE,
       payload: res.data,

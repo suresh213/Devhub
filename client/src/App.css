@@ -339,15 +339,91 @@ img {
   /* background-color: var(--dark-color); */
 }
 
+.all-posts {
+  text-align: center;
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  border-radius: 10px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.all-posts textarea {
+  width: 80%;
+  border-radius: 25px;
+  padding: 7px 0px 7px 20px;
+  background-color: #f7f7f7;
+  border: 2px solid #eeeeee;
+}
+
+.all-posts .post-form button {
+  width: 20%;
+  display: none;
+}
+
 .form-container1 {
   display: grid;
   grid-template-columns: 1.5fr 2.5fr;
   text-align: center;
   width: 100%;
-  overflow: hidden;
   margin: auto;
   /* background-color: #bec1c2; */
   border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 20px;
+}
+
+.form-container1 .git-repos {
+  padding: 20px;
+}
+
+.form-container1 .your-skills {
+  text-align: left;
+  padding: 30px 10px 10px 10px;
+}
+
+.form-container1 .your-skills h5 {
+  font-size: 20px;
+}
+
+.form-container1 .your-skills ul {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  grid-column-gap: 10px;
+}
+
+.form-container1 .your-skills ul li {
+  background-color: #e2e2e2;
+  padding: 2px 10px;
+  border-radius: 10px;
+  margin-top: 5px;
+}
+
+.create-profile {
+  text-align: center;
+  width: 70%;
+  margin: auto;
+  /* background-color: #bec1c2; */
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.create-profile .form-group {
+  align-items: center;
+  text-align: center;
+}
+
+.create-profile .form-group input,
+.create-profile .form-group select,
+.create-profile .form-group textarea {
+  width: 70%;
+  border-radius: 25px;
+  padding: 7px 0px 7px 20px;
+  background-color: #f7f7f7;
+  border: 2px solid #eeeeee;
 }
 
 .form .form-group {
@@ -406,6 +482,46 @@ button {
 }
 
 .form .social-input i.fa-linkedin {
+  color: #0077b5;
+}
+
+.social-texts {
+  text-align: left;
+  padding: 20px;
+}
+
+.social-texts h5 {
+  font-size: 18px;
+}
+
+.social-text {
+  display: flex;
+  grid-column-gap: 5px;
+  align-items: center;
+  padding: 5px;
+}
+
+.social-text i {
+  font-size: 25px;
+}
+
+.social-text i.fa-twitter {
+  color: #38a1f3;
+}
+
+.social-text i.fa-facebook {
+  color: #3b5998;
+}
+
+.social-text i.fa-instagram {
+  color: #3f729b;
+}
+
+.social-text i.fa-youtube {
+  color: #c4302b;
+}
+
+.social-text i.fa-linkedin {
   color: #0077b5;
 }
 
@@ -503,6 +619,7 @@ button {
 
 .profile-item {
   text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   align-items: center;
   padding: 0.5rem 1rem;
   margin-bottom: 1rem;
@@ -512,7 +629,7 @@ button {
   width: 90px;
   height: 90px;
   border-radius: 100%;
-  border: 2px solid gainsboro;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 /* Profile Page */
@@ -661,25 +778,38 @@ button {
 
 .profile-head {
   margin-top: 1rem;
-  text-align: center;
+  text-align: left;
   align-items: center;
-  background-color: #0077b5;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-column-gap: 30px;
+}
+
+.profile-head .flex {
+  display: flex;
+  grid-column-gap: 10px;
+}
+
+.profile-head .flex h3 {
+  font-size: 16px;
 }
 
 .profile-pic {
   justify-content: center;
   border-radius: 50%;
-  height: 150px;
-  width: 150px;
+  height: 120px;
+  width: 120px;
   background-size: cover;
   background-position: center;
   background-blend-mode: multiply;
   vertical-align: middle;
   text-align: center;
   color: transparent;
+  align-items: center;
   transition: all 0.3s ease;
   text-decoration: none;
   cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 
 .profile-pic:hover {

@@ -17,7 +17,7 @@ const Posts = ({ getAllPosts, post: { posts, loading } }) => {
     <Fragment>
       <div className='post-page'>
         <div className='connect-people'></div>
-        <div className='form-container'>
+        <div className='all-posts'>
           <PostForm />
           <h3>All Posts</h3>
           {posts ? (

@@ -47,17 +47,28 @@ const EditProfile = ({
 
   const onSubmit = (e) => {
     e.preventDefault();
+    console.log(formData);
     createProfile(formData, history, true);
   };
 
   useEffect(() => {
     getCurrentProfile();
+    let allSkills = '';
+    if (profile && profile.skills) {
+      for (let i = 0; i < profile.skills.length; ++i) {
+        allSkills += profile.skills[i];
+        if (i < profile.skills.length - 1) {
+          allSkills += ',';
+        }
+      }
+    }
+    console.log(allSkills);
     setformData({
       name: loading || user.name,
       bio: loading || !profile.bio ? '' : profile.bio,
       location: loading || !profile.location ? '' : profile.location,
       website: loading || !profile.website ? '' : profile.website,
-      skills: loading || !profile.skills ? '' : profile.skills,
+      skills: loading || !profile.skills ? '' : allSkills,
       status: loading || !profile.status ? '' : profile.status,
       githubusername:
         loading || !profile.githubusername ? '' : profile.githubusername,
@@ -71,7 +82,7 @@ const EditProfile = ({
   }, [loading]);
   return (
     <Fragment>
-      <div className='form-container1'>
+      <div className='create-profile'>
         <h1 class='large text-primary'>Edit Profile</h1>
         <p class='lead'>
           <i class='fas fa-user'></i> Let's get some information to make your

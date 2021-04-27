@@ -9,19 +9,19 @@ import Experience from './Experience';
 import Education from './Education';
 import axios from 'axios';
 import BlankProfilePicture from '../../common/assets/dashboard/blank-profile-picture.png';
-
+import GithubRepos from '../profile/GithubRepos';
 const DashBoard = ({
   getCurrentProfile,
   auth: { user },
   profile: { profile, loading },
 }) => {
   const [profilePicture, setProfilePicture] = useState(user && user.avatar);
-  console.log(profilePicture);
   useEffect(() => {
     getCurrentProfile();
+    console.log(user);
   }, [getCurrentProfile]);
 
-  if (loading && profile === null) {
+  if (loading || profile === null) {
     return <Spinner />;
   }
   const convertTobase64 = async (file) => {
@@ -81,9 +81,13 @@ const DashBoard = ({
                 id='fileToUpload'
               />
             </div>
-            <h2> {user && user.name}</h2>
-            <h3>Following: {user ? user.following.length : 0}</h3>
-            <h3>Followers: {user ? user.followers.length : 0}</h3>
+            <div>
+              <h2> {user && user.name}</h2>
+              <div className='flex'>
+                <h3>Following: {user ? user.following.length : 0}</h3>
+                <h3>Followers: {user ? user.followers.length : 0}</h3>
+              </div>
+            </div>
           </div>
           {profile && (
             <div>
@@ -93,17 +97,67 @@ const DashBoard = ({
                   <span>at {profile.company}</span>
                 )}
               </h3>
+              {profile && profile.bio && <p class='lead'>Bio: {profile.bio}</p>}
               <DashBoardActions />
             </div>
           )}
+          <div className='git-repos'>
+            {profile.githubusername && (
+              <GithubRepos username={profile.githubusername} />
+            )}
+          </div>
         </div>
         <div>
           {profile ? (
             <Fragment>
+              <div className='your-skills'>
+                <h5>Your Skills:</h5>
+                <ul>
+                  {profile.skills.map((skill) => (
+                    <li>{skill}</li>
+                  ))}
+                </ul>
+              </div>
               <br />
               <Experience experience={profile.experience} />
               <br />
               <Education education={profile.education} />
+              <div className='social-texts'>
+                <h5>Social links:</h5>
+                <div class='form-group social-text'>
+                  <i class='fab fa-linkedin fa-2x'></i>
+                  <p>{profile.social.linkedin}</p>
+                </div>
+                <div class='form-group social-text'>
+                  <i class='fab fa-twitter fa-2x'></i>
+                  <p>{profile.social.linkedin}</p>
+                </div>
+
+                <div class='form-group social-text'>
+                  <i class='fab fa-facebook fa-2x'></i>
+                  <p>{profile.social.linkedin}</p>
+                </div>
+
+                <div class='form-group social-text'>
+                  <i class='fab fa-youtube fa-2x'></i>
+                  <p>{profile.social.linkedin}</p>
+                </div>
+
+                <div class='form-group social-text'>
+                  <i class='fab fa-instagram fa-2x'></i>
+                  <p>{profile.social.linkedin}</p>
+                </div>
+              </div>
+              {profile && (
+                <div className='share-profile'>
+                  <h5>Share your profile:</h5>
+                  <a
+                    href={`https://dev-hub-network.herokuapp.com/profile/${profile._id}`}
+                  >
+                    https://dev-hub-network.herokuapp.com/profile/{profile._id}
+                  </a>
+                </div>
+              )}{' '}
             </Fragment>
           ) : (
             <Fragment>

@@ -47,7 +47,7 @@ const CreateProfile = ({ history, createProfile, auth: {user} }) => {
   };
   return (
     <Fragment>
-      <div className='form-container1'>
+      <div className='create-profile'>
         <h1 class='large text-primary'>Create Your Profile</h1>
         <p class='lead'>
           <i class='fas fa-user'></i> Let's get some information to make your

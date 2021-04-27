@@ -6,9 +6,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import { login } from '../../actions/auth';
 import { connect } from 'react-redux';
 import developerImg from '../../common/assets/developer.png';
+import Spinner from '../layouts/Spinner';
 toast.configure();
 
-const Login = ({ login, isAuthenticated }) => {
+const Login = ({ login, isAuthenticated, auth }) => {
   const [formData, setformData] = useState({
     email: '',
     password: '',
@@ -17,20 +18,23 @@ const Login = ({ login, isAuthenticated }) => {
   const onChange = (e) => {
     setformData({ ...formData, [e.target.name]: e.target.value });
   };
+  
   const onSubmit = async (e) => {
     e.preventDefault();
     if (!email || !password) {
       toast.error('Enter Credentials');
       return;
     }
+    console.log(auth);
     login({ email, password });
   };
+  
   if (isAuthenticated) {
     return <Redirect to='/dashboard' />;
   }
+
   return (
     <Fragment>
-      
       <div className='login'>
         <div className='side-img'>
           <img src={developerImg} alt='' />
@@ -77,8 +81,10 @@ const Login = ({ login, isAuthenticated }) => {
 Login.propTypes = {
   login: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
+  auth: PropTypes.object.isRequired,
 };
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
+  auth: state.auth,
 });
 export default connect(mapStateToProps, { login })(Login);
