@@ -25,7 +25,7 @@ const AddExperience = ({ addExperience, history }) => {
   };
   return (
     <div>
-      <div className='form-container'>
+      <div className='create-profile'>
         <h1 className='large text-primary'>Add an Experience</h1>
         <p className='lead'>
           <i className='fas fa-code-branch'></i> Add your past and current

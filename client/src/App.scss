@@ -390,7 +390,8 @@ img {
   .form-group {
     align-items: center;
     text-align: center;
-    input,
+    input[type='text'],
+    input[type='date'],
     select,
     textarea {
       width: 70%;
@@ -398,6 +399,9 @@ img {
       padding: 7px 0px 7px 20px;
       background-color: #f7f7f7;
       border: 2px solid #eeeeee;
+    }
+    input[type='date'] {
+      padding-right: 20px;
     }
   }
 }
@@ -457,7 +461,7 @@ button {
   color: #0077b5;
 }
 
-.social-texts{
+.social-texts {
   text-align: left;
   padding: 20px;
   h5 {
@@ -472,7 +476,6 @@ button {
     font-size: 25px;
   }
   padding: 5px;
-  
 }
 .social-text i.fa-twitter {
   color: #38a1f3;

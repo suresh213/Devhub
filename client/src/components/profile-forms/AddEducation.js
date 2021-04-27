@@ -32,7 +32,7 @@ const AddEducation = ({ addEducation, history }) => {
     addEducation(formData, history);
   };
   return (
-    <div className='form-container'>
+    <div className='create-profile'>
       <h1 className='large text-primary'>Add Education</h1>
       <p className='lead'>
         <i className='fas fa-code-branch'></i> Add your past or current

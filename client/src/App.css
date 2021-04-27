@@ -416,7 +416,8 @@ img {
   text-align: center;
 }
 
-.create-profile .form-group input,
+.create-profile .form-group input[type='text'],
+.create-profile .form-group input[type='date'],
 .create-profile .form-group select,
 .create-profile .form-group textarea {
   width: 70%;
@@ -424,6 +425,10 @@ img {
   padding: 7px 0px 7px 20px;
   background-color: #f7f7f7;
   border: 2px solid #eeeeee;
+}
+
+.create-profile .form-group input[type='date'] {
+  padding-right: 20px;
 }
 
 .form .form-group {
