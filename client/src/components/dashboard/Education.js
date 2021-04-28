@@ -3,13 +3,22 @@ import Moment from 'react-moment';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { deleteEducation } from '../../actions/profile';
+import { Link } from 'react-router-dom';
 const Education = ({ education, deleteEducation }) => {
   console.log(education);
 
   return (
     <Fragment>
       <div className='profile-exp bg-white'>
-        <h1 className='my-2'>Education</h1>
+        <div
+          className=' exp-head'
+        >
+          <h2>Education</h2>
+          <Link to='add-education' className='btn btn-dark'>
+            <i className='fa fa-plus '></i>
+          </Link>
+        </div>
+
         {education.length > 0 ? (
           education.map((item) => (
             <div key={item._id}>

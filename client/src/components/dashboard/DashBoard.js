@@ -16,6 +16,17 @@ const DashBoard = ({
   profile: { profile, loading },
 }) => {
   const [profilePicture, setProfilePicture] = useState(user && user.avatar);
+  const [mobileView, setMobileView] = useState(false);
+
+  const resize = () => {
+    setMobileView(window.innerWidth <= 600);
+  };
+
+  useEffect(() => {
+    resize();
+    window.addEventListener('resize', resize);
+  }, []);
+
   useEffect(() => {
     getCurrentProfile();
     console.log(user);
@@ -57,8 +68,9 @@ const DashBoard = ({
   return (
     <Fragment>
       <h1 className='large text-primary'>Dashboard</h1>
+
       <div className='form-container1'>
-        <div>
+        <div className='profile-head-div'>
           <div className='profile-head'>
             <div className='profile-pic-div'>
               <label for='fileToUpload'>
@@ -91,21 +103,25 @@ const DashBoard = ({
           </div>
           {profile && (
             <div>
-              <h3 class='lead'>
+              <h3 className='lead'>
                 {profile && profile.status && <span> {profile.status}</span>}{' '}
                 {profile && profile.company && (
                   <span>at {profile.company}</span>
                 )}
               </h3>
               {profile && profile.bio && <p class='lead'>Bio: {profile.bio}</p>}
-              <DashBoardActions />
+              <Link to='edit-profile' className='btn btn-dark'>
+                <i className='fas fa-user-circle text-primary'></i> Edit Profile
+              </Link>
             </div>
           )}
-          <div className='git-repos'>
-            {profile.githubusername && (
-              <GithubRepos username={profile.githubusername} />
-            )}
-          </div>
+          {!mobileView && (
+            <div className='git-repos'>
+              {profile.githubusername && (
+                <GithubRepos username={profile.githubusername} />
+              )}
+            </div>
+          )}
         </div>
         <div>
           {profile ? (
@@ -130,34 +146,42 @@ const DashBoard = ({
                 </div>
                 <div class='form-group social-text'>
                   <i class='fab fa-twitter fa-2x'></i>
-                  <p>{profile.social.linkedin}</p>
+                  <p>{profile.social.twitter}</p>
                 </div>
 
                 <div class='form-group social-text'>
                   <i class='fab fa-facebook fa-2x'></i>
-                  <p>{profile.social.linkedin}</p>
+                  <p>{profile.social.facebook}</p>
                 </div>
 
                 <div class='form-group social-text'>
                   <i class='fab fa-youtube fa-2x'></i>
-                  <p>{profile.social.linkedin}</p>
+                  <p>{profile.social.youtube}</p>
                 </div>
 
                 <div class='form-group social-text'>
                   <i class='fab fa-instagram fa-2x'></i>
-                  <p>{profile.social.linkedin}</p>
+                  <p>{profile.social.instagram}</p>
                 </div>
               </div>
               {profile && (
                 <div className='share-profile'>
-                  <h5>Share your profile:</h5>
+                  <h3>Share your profile:</h3>
                   <a
                     href={`https://dev-hub-network.herokuapp.com/profile/${profile._id}`}
+                    target='_blank'
                   >
                     https://dev-hub-network.herokuapp.com/profile/{profile._id}
                   </a>
                 </div>
               )}{' '}
+              {mobileView && (
+                <div className='git-repos'>
+                  {profile.githubusername && (
+                    <GithubRepos username={profile.githubusername} />
+                  )}
+                </div>
+              )}
             </Fragment>
           ) : (
             <Fragment>

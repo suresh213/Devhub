@@ -32,8 +32,8 @@ const PostItem = ({
   };
   return (
     <div className='post bg-white p-1 my-1'>
-      <div>
-        <Link to={`/profile/${user}`}>
+      <div className='post-head'>
+        <Link to={`/profile/${user}`} className='post-head-name'>
           <img className='round-img' src={avatar} alt='' />
           <h4>{name}</h4>
         </Link>
@@ -51,8 +51,7 @@ const PostItem = ({
               type='button'
               className={isLiked ? 'btn btn-dark ' : 'btn btn-light'}
             >
-              <i className='fas fa-thumbs-up'></i>
-              <span>{likes.length}</span>
+              <i className='fas fa-thumbs-up'></i> <span>{likes.length}</span>
             </button>
             {/* <button
               onClick={(e) => removeLike(_id)}

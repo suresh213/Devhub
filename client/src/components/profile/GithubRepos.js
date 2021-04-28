@@ -35,13 +35,13 @@ const GithubRepos = ({ username, getRepos, repos }) => {
             <div>
               <ul>
                 <li className='badge badge-primary'>
-                  Stars: {repos.stargazers_count}
+                  Stars: {repo.stargazers_count}
                 </li>
                 <li className='badge badge-dark'>
-                  Watchers: {repos.watchers_count}
+                  Watchers: {repo.watchers_count}
                 </li>
                 <li className='badge badge-light'>
-                  Forks: {repos.forks_count}
+                  Forks: {repo.forks_count}
                 </li>
               </ul>
             </div>

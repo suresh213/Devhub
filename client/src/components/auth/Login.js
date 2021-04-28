@@ -18,7 +18,7 @@ const Login = ({ login, isAuthenticated, auth }) => {
   const onChange = (e) => {
     setformData({ ...formData, [e.target.name]: e.target.value });
   };
-  
+
   const onSubmit = async (e) => {
     e.preventDefault();
     if (!email || !password) {
@@ -30,7 +30,7 @@ const Login = ({ login, isAuthenticated, auth }) => {
   };
   
   if (isAuthenticated) {
-    return <Redirect to='/dashboard' />;
+    return <Redirect to='/posts' />;
   }
 
   return (

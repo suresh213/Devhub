@@ -18,6 +18,7 @@ const Profile = ({
 }) => {
   useEffect(() => {
     getProfileById(match.params.id);
+    console.log(profile);
   }, [getProfileById]);
 
   if (

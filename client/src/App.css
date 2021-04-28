@@ -1,8 +1,7 @@
 /* Global Styles */
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap");
 :root {
-  --primary-color: #17a2b8;
-  --primary-color: #145275;
+  --primary-color: #074b79;
   --dark-color: #343a40;
   --dark-color: #070a0e;
   --light-color: #f4f4f4;
@@ -281,7 +280,8 @@ img {
 }
 
 /* Forms */
-.login {
+.login,
+.register {
   vertical-align: middle;
   display: grid;
   grid-template-columns: 2fr 2fr;
@@ -289,12 +289,14 @@ img {
   align-items: center;
 }
 
-.login .side-img img {
+.login .side-img img,
+.register .side-img img {
   width: 250px;
   height: 250px;
 }
 
-.login .form {
+.login .form,
+.register .form {
   width: 80%;
   padding: 20px 0;
   margin: auto;
@@ -303,28 +305,36 @@ img {
   text-align: center;
 }
 
-.login .form .lead {
+.login .form .lead,
+.register .form .lead {
   display: flex;
   justify-content: center;
   grid-column-gap: 10px;
   align-items: center;
 }
 
-.login .form .lead h5 {
+.login .form .lead h5,
+.register .form .lead h5 {
   font-size: 30px;
 }
 
-.login .form .form-group {
+.login .form .form-group,
+.register .form .form-group {
   align-items: center;
   text-align: center;
 }
 
-.login .form .form-group input {
+.login .form .form-group input,
+.register .form .form-group input {
   width: 80%;
   border-radius: 25px;
   padding: 7px 0px 7px 20px;
   background-color: #f7f7f7;
   border: 2px solid #eeeeee;
+}
+
+.login {
+  margin-top: 60px;
 }
 
 .form-container {
@@ -351,7 +361,7 @@ img {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.all-posts textarea {
+.post-form textarea {
   width: 80%;
   border-radius: 25px;
   padding: 7px 0px 7px 20px;
@@ -359,7 +369,7 @@ img {
   border: 2px solid #eeeeee;
 }
 
-.all-posts .post-form button {
+.post-form button {
   width: 20%;
   display: none;
 }
@@ -688,6 +698,22 @@ button {
   text-align: center;
 }
 
+.exp-head {
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.exp-head h2 {
+  margin-top: 15px;
+}
+
+.exp-head .btn {
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
 .profile-exp {
   grid-area: exp;
 }
@@ -751,12 +777,19 @@ button {
 }
 
 .post {
-  display: grid;
-  grid-template-columns: 1fr 4fr;
-  grid-gap: 2rem;
   align-items: center;
   border-radius: 10px;
   border: 1px solid #aaa8a8;
+}
+
+.post h4 {
+  font-size: 18px;
+}
+
+.post-head-name {
+  align-items: center;
+  display: flex;
+  grid-column-gap: 10px;
 }
 
 .post > div:first-child {
@@ -764,7 +797,7 @@ button {
 }
 
 .post img {
-  width: 100px;
+  width: 50px;
 }
 
 .post .comment-count {
@@ -847,6 +880,11 @@ button {
   margin-bottom: 0.2rem;
 }
 
+.share-profile {
+  text-align: left;
+  padding: 20px;
+}
+
 /* Mobile Styles */
 @media (max-width: 700px) {
   .container {
@@ -924,5 +962,151 @@ button {
   .post a,
   .post button {
     padding: 0.3rem 0.4rem;
+  }
+  .form-container1 {
+    display: block;
+    word-wrap: break-word;
+    text-align: center;
+    width: 100%;
+    margin: auto;
+    /* background-color: #bec1c2; */
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: none;
+    padding: 20px;
+  }
+  .form-container1 .git-repos {
+    padding: 5px;
+  }
+  .form-container1 .your-skills {
+    text-align: left;
+    padding: 30px 10px 10px 10px;
+  }
+  .form-container1 .your-skills h5 {
+    font-size: 20px;
+  }
+  .form-container1 .your-skills ul {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    grid-column-gap: 10px;
+  }
+  .form-container1 .your-skills ul li {
+    background-color: #e2e2e2;
+    padding: 2px 10px;
+    border-radius: 10px;
+    margin-top: 5px;
+  }
+  .all-posts {
+    text-align: center;
+    width: 100%;
+    margin: auto;
+    padding: 0px;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: none;
+    padding: 0 20px;
+  }
+  .post-form textarea {
+    width: 100%;
+    height: 100px;
+    border-radius: 25px;
+    padding: 7px 0px 7px 20px;
+    background-color: #f7f7f7;
+    border: 2px solid #eeeeee;
+  }
+  .post-form button {
+    width: 20%;
+    display: none;
+  }
+  .login,
+  .register {
+    display: block;
+  }
+  .login .side-img,
+  .register .side-img {
+    display: none;
+  }
+  .login .form,
+  .register .form {
+    width: 100%;
+  }
+  .profile-head {
+    margin: auto;
+    margin-top: 1rem;
+    text-align: center;
+    align-items: center;
+    display: block;
+  }
+  .profile-head .flex {
+    display: flex;
+    justify-content: space-around;
+    grid-column-gap: 10px;
+  }
+  .profile-head .flex h3 {
+    font-size: 16px;
+  }
+  .lead {
+    margin-top: 10px;
+  }
+  .profile-pic {
+    height: 100px;
+    width: 100px;
+    margin: auto;
+    text-align: center;
+  }
+  .social-texts {
+    padding: 10px;
+    word-wrap: break-word;
+  }
+  .social-texts .social-texts {
+    word-wrap: break-word;
+  }
+  .create-profile {
+    width: 100%;
+    /* background-color: #bec1c2; */
+    box-shadow: none;
+  }
+  .create-profile .form-group input[type='text'],
+  .create-profile .form-group input[type='date'],
+  .create-profile .form-group select,
+  .create-profile .form-group textarea {
+    width: 90%;
+  }
+  .profile-head-div {
+    background-color: #e2e2e2;
+    border-radius: 10px;
+    padding: 10px 0;
+  }
+  .container {
+    padding: 0 1rem;
+  }
+  .profiles-page {
+    text-align: center;
+  }
+  .profiles-page input {
+    width: 90%;
+    font-size: 15px;
+  }
+  .profiles {
+    margin-top: 30px;
+    display: block;
+    text-align: center;
+    align-items: center;
+    padding: 0 1.5rem;
+  }
+  .profile-item {
+    text-align: center;
+    box-shadow: rgba(151, 151, 151, 0.35) 0px 5px 15px;
+    align-items: center;
+    padding: 0.5rem 1rem;
+  }
+  .profile-item img {
+    width: 90px;
+    height: 90px;
+    border-radius: 100%;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   }
 }

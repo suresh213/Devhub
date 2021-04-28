@@ -35,11 +35,11 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
   };
 
   if (isAuthenticated) {
-    return <Redirect to='/dashboard' />;
+    return <Redirect to='/posts' />;
   }
   return (
     <Fragment>
-      <div className='login'>
+      <div className='register'>
         <div className='side-img'>
           <img src={developerImg} alt='' />
         </div>

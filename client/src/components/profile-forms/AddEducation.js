@@ -89,16 +89,17 @@ const AddEducation = ({ addEducation, history }) => {
             Current Job
           </p>
         </div>
-        <div className='form-group'>
-          <h4>To Date</h4>
-          <input
-            type='date'
-            name='to'
-            value={to}
-            onChange={(e) => onChange(e)}
-            disabled={toDateDisabled ? 'disabled' : ''}
-          />
-        </div>
+        {!toDateDisabled && (
+          <div className='form-group'>
+            <h4>To Date</h4>
+            <input
+              type='date'
+              name='to'
+              value={to}
+              onChange={(e) => onChange(e)}
+            />
+          </div>
+        )}
         <div className='form-group'>
           <textarea
             name='description'

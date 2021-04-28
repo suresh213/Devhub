@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import Moment from 'react-moment';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { deleteExperience } from '../../actions/profile';
@@ -8,7 +9,14 @@ const Experience = ({ experience, deleteExperience }) => {
   return (
     <Fragment>
       <div className='profile-exp bg-white'>
-        <h1 className='my-2'>Experience</h1>
+        <div
+          className='exp-head'
+        >
+          <h2>Experience</h2>
+          <Link to='add-experience' className='btn btn-dark'>
+            <i className='fa fa-plus '></i>
+          </Link>
+        </div>
         {experience.length > 0 ? (
           experience.map((item) => (
             <div key={item._id}>
