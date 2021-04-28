@@ -70,7 +70,7 @@ const PostItem = ({
                 type='button'
                 className='btn btn-danger'
               >
-                X
+                <i className='fas fa-times'></i>
               </button>
             )}
           </Fragment>
