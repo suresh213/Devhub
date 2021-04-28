@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { connect,useDispatch } from 'react-redux';
 import { getCurrentProfile, uploadProfilePicture } from '../../actions/profile';
 import Spinner from '../layouts/Spinner';
 import { Link } from 'react-router-dom';
@@ -10,11 +10,20 @@ import Education from './Education';
 import axios from 'axios';
 import BlankProfilePicture from '../../common/assets/dashboard/blank-profile-picture.png';
 import GithubRepos from '../profile/GithubRepos';
+import {
+  UPDATE_FOLLOWERS,
+  UPDATE_FOLLOWING,
+  AUTH_ERROR,
+  USER_LOADED,
+} from '../../actions/types';
+
 const DashBoard = ({
   getCurrentProfile,
   auth: { user },
   profile: { profile, loading },
 }) => {
+  const dispatch = useDispatch();
+
   const [profilePicture, setProfilePicture] = useState(user && user.avatar);
   const [mobileView, setMobileView] = useState(false);
 
@@ -29,6 +38,20 @@ const DashBoard = ({
 
   useEffect(() => {
     getCurrentProfile();
+    axios
+      .get('/api/register')
+      .then((res) => {
+        console.log(res.data);
+        dispatch({
+          type: USER_LOADED,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        dispatch({
+          type: AUTH_ERROR,
+        });
+      });
     console.log(profile);
   }, [getCurrentProfile]);
 
@@ -77,9 +100,7 @@ const DashBoard = ({
                 <div
                   className='profile-pic'
                   style={{
-                    backgroundImage: profilePicture
-                      ? `url(${profilePicture})`
-                      : `url(${BlankProfilePicture})`,
+                    backgroundImage:  `url(${profilePicture})`
                   }}
                 >
                   <span className='glyphicon glyphicon-camera'></span>
@@ -117,7 +138,7 @@ const DashBoard = ({
           )}
           {!mobileView && (
             <div className='git-repos'>
-              {profile&&profile.githubusername && (
+              {profile && profile.githubusername && (
                 <GithubRepos username={profile.githubusername} />
               )}
             </div>
