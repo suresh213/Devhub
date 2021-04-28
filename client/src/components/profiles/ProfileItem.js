@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { UPDATE_FOLLOWERS, UPDATE_FOLLOWING } from '../../actions/types';
+import {
+  UPDATE_FOLLOWERS,
+  UPDATE_FOLLOWING,
+  AUTH_ERROR,
+  USER_LOADED,
+} from '../../actions/types';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 const ProfileItem = ({
@@ -15,6 +20,7 @@ const ProfileItem = ({
   },
   auth: { user },
 }) => {
+  const dispatch = useDispatch();
   const [isFollowed, setIsFollowed] = useState(false);
   useEffect(() => {
     if (user) {
@@ -26,7 +32,7 @@ const ProfileItem = ({
     }
   }, [followers]);
 
-  const followUser = (id) => {
+  const followUser = async (id) => {
     console.log(id);
     axios
       .put(`/api/user/follow/${id}`)
@@ -40,6 +46,20 @@ const ProfileItem = ({
         //   type: UPDATE_FOLLOWING,
         //   payload: { id, likes: res.data },
         // });
+        // axios
+        //   .get('/api/register')
+        //   .then((res) => {
+        //     console.log(res.data);
+        //     dispatch({
+        //       type: USER_LOADED,
+        //       payload: res.data,
+        //     });
+        //   })
+        //   .catch((err) => {
+        //     dispatch({
+        //       type: AUTH_ERROR,
+        //     });
+        //   });
       })
       .catch((err) => {
         console.log(err);
@@ -49,7 +69,7 @@ const ProfileItem = ({
         // });
       });
   };
-  const unFollowUser = (id) => {
+  const unFollowUser = async (id) => {
     axios
       .delete(`/api/user/unfollow/${id}`)
       .then((res) => {
@@ -62,6 +82,20 @@ const ProfileItem = ({
         //   type: UPDATE_FOLLOWING,
         //   payload: { id, likes: res.data },
         // });
+        // axios
+        //   .get('/api/register')
+        //   .then((res) => {
+        //     console.log(res.data);
+        //     dispatch({
+        //       type: USER_LOADED,
+        //       payload: res.data,
+        //     });
+        //   })
+        //   .catch((err) => {
+        //     dispatch({
+        //       type: AUTH_ERROR,
+        //     });
+        //   });
       })
       .catch((err) => {
         console.log(err);

@@ -29,10 +29,10 @@ const DashBoard = ({
 
   useEffect(() => {
     getCurrentProfile();
-    console.log(user);
+    console.log(profile);
   }, [getCurrentProfile]);
 
-  if (loading || profile === null) {
+  if (loading) {
     return <Spinner />;
   }
   const convertTobase64 = async (file) => {
@@ -117,7 +117,7 @@ const DashBoard = ({
           )}
           {!mobileView && (
             <div className='git-repos'>
-              {profile.githubusername && (
+              {profile&&profile.githubusername && (
                 <GithubRepos username={profile.githubusername} />
               )}
             </div>
@@ -164,7 +164,7 @@ const DashBoard = ({
                   <p>{profile.social.instagram}</p>
                 </div>
               </div>
-              {profile && (
+              {/* {profile && (
                 <div className='share-profile'>
                   <h3>Share your profile:</h3>
                   <a
@@ -174,14 +174,14 @@ const DashBoard = ({
                     https://dev-hub-network.herokuapp.com/profile/{profile._id}
                   </a>
                 </div>
-              )}{' '}
-              {mobileView && (
+              )}{' '} */}
+              {/* {mobileView && (
                 <div className='git-repos'>
                   {profile.githubusername && (
                     <GithubRepos username={profile.githubusername} />
                   )}
                 </div>
-              )}
+              )} */}
             </Fragment>
           ) : (
             <Fragment>

@@ -2,23 +2,51 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { getProfiles } from '../../actions/profile';
 import Spinner from '../layouts/Spinner';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import ProfileItem from '../profiles/ProfileItem';
-
+import {
+  GET_PROFILE,
+  PROFILE_ERROR,
+  UPDATE_PROFILE,
+  GET_REPOS,
+  GET_PROFILES,
+  CLEAR_PROFILE,
+} from '../../actions/types';
+import axios from 'axios';
 const Profiles = ({ getProfiles, profile: { loading, profiles }, auth }) => {
+  const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [resultProfiles, setResultProfiles] = useState([]);
+  const [allProfiles, setAllProfiles] = useState([]);
   const [load, setLoad] = useState(false);
   useEffect(() => {
-    getProfiles();
-    setResultProfiles(profiles);
-    console.log(profiles)
-    console.log(resultProfiles)
-  }, [getProfiles]);
+    setLoad(true);
+    axios
+      .get('/api/profile/allProfiles')
+      .then((res) => {
+        setResultProfiles(res.data);
+        setAllProfiles(res.data);
+        setLoad(false);
+        dispatch({
+          type: GET_PROFILES,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        setLoad(false);
+        dispatch({
+          type: PROFILE_ERROR,
+          payload: {
+            msg: err.response.statusText,
+            status: err.response.status,
+          },
+        });
+      });
+  }, []);
 
   useEffect(() => {
     if (name.length === 0) {
-      setResultProfiles(profiles);
+      setResultProfiles(allProfiles);
       return;
     }
     setLoad(true);
