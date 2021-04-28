@@ -62,7 +62,7 @@ const Profile = ({
         <Spinner />
       ) : profile === null ? (
         <h3 style={{ textAlign:'center', marginTop: '50px' }}>
-          No profile found for this user..{' '}
+          No profile found for this user.{' '}
         </h3>
       ) : (
         <Fragment>
