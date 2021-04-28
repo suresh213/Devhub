@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from 'react';
 import Spinner from '../layouts/Spinner';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { getProfileById } from '../../actions/profile';
 import { Link, Redirect } from 'react-router-dom';
 import ProfileTop from './ProfileTop';
@@ -9,6 +9,8 @@ import ProfileAbout from './ProfileAbout';
 import ProfileExperience from './ProfileExperience';
 import ProfileEducation from './ProfileEducation';
 import GithubRepos from './GithubRepos';
+import { PROFILE_ERROR, GET_PROFILE } from '../../actions/types';
+import axios from 'axios';
 
 const Profile = ({
   getProfileById,
@@ -16,25 +18,50 @@ const Profile = ({
   auth,
   match,
 }) => {
+  const dispatch = useDispatch();
   useEffect(() => {
     getProfileById(match.params.id);
-    console.log(profile);
-  }, [getProfileById]);
+    axios
+      .get(`/api/profile/user/${match.params.id}`)
+      .then((res) => {
+        dispatch({
+          type: GET_PROFILE,
+          payload: res.data,
+        });
+      })
 
-  if (
-    auth.isAuthenticated &&
-    auth.loading === false &&
-    profile &&
-    profile.user &&
-    profile.user._id === auth.user._id
-  ) {
-    return <Redirect to='/dashboard' />;
-  }
+      .catch((err) => {
+        dispatch({
+          type: GET_PROFILE,
+          payload: null,
+        });
+        dispatch({
+          type: PROFILE_ERROR,
+          payload: {
+            msg: err.response.statusText,
+            status: err.response.status,
+          },
+        });
+      });
+    console.log(profile);
+  }, []);
+
+  // if (
+  //   auth.isAuthenticated &&
+  //   auth.loading === false &&
+  //   profile &&
+  //   profile.user
+  //   // profile.user._id === auth.user._id
+  // ) {
+  //   return <Redirect to='/dashboard' />;
+  // }
 
   return (
     <Fragment>
-      {profile === null || loading ? (
+      {loading ? (
         <Spinner />
+      ) : profile === null ? (
+        <h3>No profile found for user.. </h3>
       ) : (
         <Fragment>
           {/* {auth.isAuthenticated &&

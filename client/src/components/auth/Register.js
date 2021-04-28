@@ -22,16 +22,15 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
   };
   const onSubmit = async (e) => {
     e.preventDefault();
-    // if (!email || !password || !password2 || name) {
-    //   toast.error('Fill all fields');
-    //   return;
-    // }
+    if (!email || !password || !password2 || !name) {
+      toast.error('Fill all fields');
+      return;
+    }
     if (password !== password2) {
       toast.error('Password not matched');
       return;
-    } else {
-      register({ name, email, password });
     }
+    register({ name, email, password });
   };
 
   if (isAuthenticated) {
