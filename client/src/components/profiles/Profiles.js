@@ -4,6 +4,7 @@ import Spinner from '../layouts/Spinner';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ProfileItem from '../profiles/ProfileItem';
+
 const Profiles = ({ getProfiles, profile: { loading, profiles }, auth }) => {
   const [name, setName] = useState('');
   const [resultProfiles, setResultProfiles] = useState([]);
@@ -11,11 +12,9 @@ const Profiles = ({ getProfiles, profile: { loading, profiles }, auth }) => {
   useEffect(() => {
     getProfiles();
     setResultProfiles(profiles);
+    console.log(profiles)
+    console.log(resultProfiles)
   }, [getProfiles]);
-
-  useEffect(() => {
-    setResultProfiles(profiles);
-  }, []);
 
   useEffect(() => {
     if (name.length === 0) {
