@@ -61,7 +61,9 @@ const Profile = ({
       {loading ? (
         <Spinner />
       ) : profile === null ? (
-        <h3>No profile found for user.. </h3>
+        <h3 style={{ textAlign:'center', marginTop: '50px' }}>
+          No profile found for this user..{' '}
+        </h3>
       ) : (
         <Fragment>
           {/* {auth.isAuthenticated &&
