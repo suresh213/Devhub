@@ -50,7 +50,7 @@ const CreateProfile = ({ history, createProfile, auth: {user} }) => {
       <div className='create-profile'>
         <h1 class='large text-primary'>Create Your Profile</h1>
         <p class='lead'>
-          <i class='fas fa-user'></i> Let's get some information to make your
+          <i class='fas fa-user'></i> Provide some information to make your
           profile stand out
         </p>
         <form class='form' onSubmit={(e) => onSubmit(e)}>
