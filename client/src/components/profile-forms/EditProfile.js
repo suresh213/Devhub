@@ -96,12 +96,9 @@ const EditProfile = ({
               <option value='Junior Developer'>Junior Developer</option>
               <option value='Senior Developer'>Senior Developer</option>
               <option value='Student'>Student or Learning</option>
-              <option value='Instructor'>Instructor or Teacher</option>
+              <option value='Instructor'>Instructor</option>
               <option value='Other'>Other</option>
             </select>
-            <small class='form-text'>
-              Give us an idea of where you are at in your career
-            </small>
           </div>
           <div class='form-group'>
             <input
@@ -111,9 +108,6 @@ const EditProfile = ({
               value={company}
               onChange={(e) => onChange(e)}
             />
-            <small class='form-text'>
-              Could be your own company or one you work for
-            </small>
           </div>
           <div class='form-group'>
             <input
@@ -123,9 +117,6 @@ const EditProfile = ({
               value={website}
               onChange={(e) => onChange(e)}
             />
-            <small class='form-text'>
-              Could be your own or a company website
-            </small>
           </div>
           <div class='form-group'>
             <input
@@ -135,9 +126,6 @@ const EditProfile = ({
               value={location}
               onChange={(e) => onChange(e)}
             />
-            <small class='form-text'>
-              City & state suggested (eg. Boston, MA)
-            </small>
           </div>
           <div class='form-group'>
             <input
@@ -148,7 +136,7 @@ const EditProfile = ({
               onChange={(e) => onChange(e)}
             />
             <small class='form-text'>
-              Please use comma separated values (eg. HTML,CSS,JavaScript,PHP)
+              Please use comma separated values (eg. React.js,Node.js,Java)
             </small>
           </div>
           <div class='form-group'>
@@ -159,10 +147,6 @@ const EditProfile = ({
               value={githubusername}
               onChange={(e) => onChange(e)}
             />
-            <small class='form-text'>
-              If you want your latest repos and a Github link, include your
-              username
-            </small>
           </div>
           <div class='form-group'>
             <textarea
@@ -171,7 +155,6 @@ const EditProfile = ({
               value={bio}
               onChange={(e) => onChange(e)}
             ></textarea>
-            <small class='form-text'>Tell us a little about yourself</small>
           </div>
 
           <div class='my-2'>

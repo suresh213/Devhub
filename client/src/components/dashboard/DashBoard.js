@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { connect,useDispatch } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { getCurrentProfile, uploadProfilePicture } from '../../actions/profile';
 import Spinner from '../layouts/Spinner';
 import { Link } from 'react-router-dom';
@@ -9,12 +9,7 @@ import Education from './Education';
 import axios from 'axios';
 import BlankProfilePicture from '../../common/assets/dashboard/blank-profile-picture.png';
 import GithubRepos from '../profile/GithubRepos';
-import {
-  UPDATE_FOLLOWERS,
-  UPDATE_FOLLOWING,
-  AUTH_ERROR,
-  USER_LOADED,
-} from '../../actions/types';
+import { AUTH_ERROR, USER_LOADED } from '../../actions/types';
 
 const DashBoard = ({
   getCurrentProfile,
@@ -25,7 +20,7 @@ const DashBoard = ({
 
   const [profilePicture, setProfilePicture] = useState(user && user.avatar);
   const [mobileView, setMobileView] = useState(false);
-
+  const [load, setLoad] = useState(false);
   const resize = () => {
     setMobileView(window.innerWidth <= 600);
   };
@@ -52,9 +47,9 @@ const DashBoard = ({
         });
       });
     // console.log(profile);
-  }, [getCurrentProfile]);
+  }, [getCurrentProfile, profilePicture]);
 
-  if (loading) {
+  if (loading || load) {
     return <Spinner />;
   }
   const convertTobase64 = async (file) => {
@@ -71,16 +66,25 @@ const DashBoard = ({
   };
   const uploadImage = async (file) => {
     const imageStr = await convertTobase64(file);
-    const res = await axios.put(
-      '/api/profile/upload/profile-pic',
-      { image: imageStr },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    );
-    setProfilePicture(imageStr);
+    setLoad(true);
+    axios
+      .put(
+        '/api/profile/upload/profile-pic',
+        { image: imageStr },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+      .then((res) => {
+        setProfilePicture(imageStr);
+        setLoad(false);
+      })
+      .catch((err) => {
+        setLoad(false);
+        console.log(err);
+      });
   };
   const handleChange = (e) => {
     const file = e.target.files[0];
@@ -99,7 +103,7 @@ const DashBoard = ({
                 <div
                   className='profile-pic'
                   style={{
-                    backgroundImage:  `url(${profilePicture})`
+                    backgroundImage: `url(${profilePicture})`,
                   }}
                 >
                   <span className='glyphicon glyphicon-camera'></span>
