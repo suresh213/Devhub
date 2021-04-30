@@ -472,6 +472,9 @@ button {
   h5 {
     font-size: 18px;
   }
+  a {
+    text-decoration: none;
+  }
 }
 .social-text {
   display: flex;
@@ -741,11 +744,11 @@ button {
   align-items: center;
   border-radius: 10px;
   border: 1px solid rgb(170, 168, 168);
-  h4{
+  h4 {
     font-size: 18px;
   }
 }
-.post-head-name{
+.post-head-name {
   align-items: center;
   display: flex;
   grid-column-gap: 10px;
