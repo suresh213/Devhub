@@ -166,26 +166,76 @@ const DashBoard = ({
                 <h5>Social links:</h5>
                 <div class='form-group social-text'>
                   <i class='fab fa-linkedin fa-2x'></i>
-                  <a>{profile.social.linkedin.length>0?profile.social.linkedin.length:'No link found'}</a>
+                  <a
+                    href={
+                      profile.social.linkedin.length > 0
+                        ? profile.social.linkedin
+                        : ''
+                    }
+                  >
+                    {profile.social.linkedin.length > 0
+                      ? profile.social.linkedin
+                      : 'No link found'}
+                  </a>
                 </div>
                 <div class='form-group social-text'>
                   <i class='fab fa-twitter fa-2x'></i>
-                  <a>{profile.social.twitter.length>0?profile.social.twitter.length:'No link found'}</a>
+                  <a
+                    href={
+                      profile.social.twitter.length > 0
+                        ? profile.social.twitter
+                        : ''
+                    }
+                  >
+                    {profile.social.twitter.length > 0
+                      ? profile.social.twitter
+                      : 'No link found'}
+                  </a>
                 </div>
 
                 <div class='form-group social-text'>
                   <i class='fab fa-facebook fa-2x'></i>
-                  <a>{profile.social.facebook.length>0?profile.social.facebook.length:'No link found'}</a>
+                  <a
+                    href={
+                      profile.social.facebook.length > 0
+                        ? profile.social.facebook
+                        : ''
+                    }
+                  >
+                    {profile.social.facebook.length > 0
+                      ? profile.social.facebook
+                      : 'No link found'}
+                  </a>
                 </div>
 
                 <div class='form-group social-text'>
                   <i class='fab fa-youtube fa-2x'></i>
-                  <a>{profile.social.youtube.length>0?profile.social.youtube.length:'No link found'}</a>
+                  <a
+                    href={
+                      profile.social.youtube.length > 0
+                        ? profile.social.youtube
+                        : ''
+                    }
+                  >
+                    {profile.social.youtube.length > 0
+                      ? profile.social.youtube
+                      : 'No link found'}
+                  </a>
                 </div>
 
                 <div class='form-group social-text'>
                   <i class='fab fa-instagram fa-2x'></i>
-                  <a>{profile.social.instagram.length>0?profile.social.instagram.length:'No link found'}</a>
+                  <a
+                    href={
+                      profile.social.instagram.length > 0
+                        ? profile.social.instagram
+                        : ''
+                    }
+                  >
+                    {profile.social.instagram.length > 0
+                      ? profile.social.instagram
+                      : 'No link found'}
+                  </a>
                 </div>
               </div>
               {/* {profile && (
