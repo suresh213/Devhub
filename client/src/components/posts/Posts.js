@@ -9,23 +9,23 @@ import Spinner from '../layouts/Spinner';
 const Posts = ({ getAllPosts, post: { posts, loading } }) => {
   useEffect(() => {
     getAllPosts();
-    axios
-      .get('/api/posts/allPosts')
-      .then((res) => {
-        dispatch({
-          type: GET_POSTS,
-          payload: res.data,
-        });
-      })
-      .catch((err) => {
-        dispatch({
-          type: POST_ERROR,
-          payload: {
-            msg: err.response.statusText,
-            status: err.response.status,
-          },
-        });
-      });
+    // axios
+    //   .get('/api/posts/allPosts')
+    //   .then((res) => {
+    //     dispatch({
+    //       type: GET_POSTS,
+    //       payload: res.data,
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     dispatch({
+    //       type: POST_ERROR,
+    //       payload: {
+    //         msg: err.response.statusText,
+    //         status: err.response.status,
+    //       },
+    //     });
+    //   });
   }, [getAllPosts]);
 
   return loading ? (
