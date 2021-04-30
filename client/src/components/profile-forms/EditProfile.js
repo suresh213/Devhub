@@ -47,7 +47,7 @@ const EditProfile = ({
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    // console.log(formData);
     createProfile(formData, history, true);
   };
 
@@ -62,7 +62,7 @@ const EditProfile = ({
         }
       }
     }
-    console.log(allSkills);
+    // console.log(allSkills);
     setformData({
       name: loading || user.name,
       bio: loading || !profile.bio ? '' : profile.bio,

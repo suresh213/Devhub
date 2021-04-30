@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { deleteEducation } from '../../actions/profile';
 import { Link } from 'react-router-dom';
 const Education = ({ education, deleteEducation }) => {
-  console.log(education);
+  // console.log(education);
 
   return (
     <Fragment>

@@ -50,7 +50,7 @@ router.delete('/:exp_id', auth, async (req, res) => {
     const profile = await Profile.findOne({ user: req.user.id });
     const expIds = profile.experience.map((exp) => exp._id.toString());
     const removeIndex = expIds.indexOf(req.params.exp_id);
-    console.log(removeIndex);
+    // console.log(removeIndex);
     if (removeIndex === -1) {
       return res.status(500).json({ msg: 'Server error' });
     } else {

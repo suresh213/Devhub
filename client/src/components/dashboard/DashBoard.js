@@ -4,7 +4,6 @@ import { connect,useDispatch } from 'react-redux';
 import { getCurrentProfile, uploadProfilePicture } from '../../actions/profile';
 import Spinner from '../layouts/Spinner';
 import { Link } from 'react-router-dom';
-import DashBoardActions from './DashBoardActions';
 import Experience from './Experience';
 import Education from './Education';
 import axios from 'axios';
@@ -41,7 +40,7 @@ const DashBoard = ({
     axios
       .get('/api/register')
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         dispatch({
           type: USER_LOADED,
           payload: res.data,
@@ -52,7 +51,7 @@ const DashBoard = ({
           type: AUTH_ERROR,
         });
       });
-    console.log(profile);
+    // console.log(profile);
   }, [getCurrentProfile]);
 
   if (loading) {
@@ -196,13 +195,13 @@ const DashBoard = ({
                   </a>
                 </div>
               )}{' '} */}
-              {/* {mobileView && (
+              {mobileView && (
                 <div className='git-repos'>
                   {profile.githubusername && (
                     <GithubRepos username={profile.githubusername} />
                   )}
                 </div>
-              )} */}
+              )}
             </Fragment>
           ) : (
             <Fragment>

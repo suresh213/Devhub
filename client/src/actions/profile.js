@@ -12,7 +12,7 @@ import { toast } from 'react-toastify';
 export const getCurrentProfile = () => async (dispatch) => {
   try {
     const res = await axios.get('/api/profile/me');
-    console.log(res.data);
+    // console.log(res.data);
     dispatch({
       type: GET_PROFILE,
       payload: res.data,
@@ -46,7 +46,7 @@ export const getProfilesByName = (name) => async (dispatch) => {
     const res = await axios.get(
       `/api/profile/allProfiles/profilesByName/${name}`
     );
-    console.log(res.data);
+    // console.log(res.data);
     dispatch({
       type: GET_PROFILES,
       payload: res.data,
@@ -63,7 +63,7 @@ export const getProfiles = () => async (dispatch) => {
   dispatch({ type: CLEAR_PROFILE });
   try {
     const res = await axios.get('/api/profile/allProfiles');
-    console.log(res.data);
+    // console.log(res.data);
     dispatch({
       type: GET_PROFILES,
       payload: res.data,
@@ -228,7 +228,7 @@ export const addEducation = (formData, history) => async (dispatch) => {
 export const deleteExperience = (id) => async (dispatch) => {
   try {
     const res = await axios.delete(`/api/profile/experience/${id}`);
-    console.log(res.data);
+    // console.log(res.data);
     dispatch({
       type: UPDATE_PROFILE,
       payload: res.data,
@@ -250,7 +250,7 @@ export const deleteExperience = (id) => async (dispatch) => {
 export const deleteEducation = (id) => async (dispatch) => {
   try {
     const res = await axios.delete(`/api/profile/education/${id}`);
-    console.log(res.data);
+    // console.log(res.data);
     dispatch({
       type: UPDATE_PROFILE,
       payload: res.data,

@@ -13,11 +13,9 @@ import setAuthToken from './utils/setAuthToken';
 
 // Components
 import NavBar from './components/layouts/NavBar';
-import Search from './components/Search/Search';
 import Landing from './components/layouts/Landing';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
-import Alert from './components/layouts/Alert';
 import DashBoard from './components/dashboard/DashBoard';
 import Post from './components/post/Post';
 import Posts from './components/posts/Posts';
@@ -47,7 +45,6 @@ const App = () => {
             <Redirect to='/login' />
           </Route>
           <section className='container'>
-            <Alert />
             <Switch>
               <Route exact path='/login' component={Login} />
               <Route exact path='/register' component={Register} />
@@ -76,7 +73,6 @@ const App = () => {
                 path='/add-Education'
                 component={AddEducation}
               />
-              <PrivateRoute exact path='/search' component={Search} />
             </Switch>
           </section>
         </Fragment>

@@ -37,7 +37,7 @@ router.post(
       } = req.body;
 
       const profileDetails = {};
-      console.log(skills);
+      // console.log(skills);
       profileDetails.user = req.user.id;
       profileDetails.name = name;
       if (status) profileDetails.status = status;
@@ -57,7 +57,7 @@ router.post(
       profileDetails.social.facebook = facebook;
       profileDetails.social.instagram = instagram;
 
-      console.log(profileDetails);
+      // console.log(profileDetails);
 
       //console.log(req.user.id);
       let profile = await Profile.findOne({ user: req.user.id });

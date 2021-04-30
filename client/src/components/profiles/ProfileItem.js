@@ -28,16 +28,16 @@ const ProfileItem = ({
       if (followed) {
         setIsFollowed(true);
       }
-      console.log(isFollowed);
+      // console.log(isFollowed);
     }
   }, [followers]);
 
   const followUser = async (id) => {
-    console.log(id);
+    // console.log(id);
     axios
       .put(`/api/user/follow/${id}`)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setIsFollowed(true); // dispatch({
         //   type: UPDATE_FOLLOWERS,
         //   payload: { id, likes: res.data },
@@ -73,7 +73,7 @@ const ProfileItem = ({
     axios
       .delete(`/api/user/unfollow/${id}`)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setIsFollowed(false); // dispatch({
         //   type: UPDATE_FOLLOWERS,
         //   payload: { id, likes: res.data },
@@ -137,7 +137,7 @@ const ProfileItem = ({
         <button
           onClick={handleFollow}
           type='button'
-          className={isFollowed ? 'btn btn-dark ' : 'btn btn-light'}
+          className={isFollowed ? 'btn btn-unfollow ' : 'btn btn-follow'}
         >
           {isFollowed ? 'Unfollow' : 'Follow'}
         </button>

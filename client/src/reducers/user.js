@@ -9,7 +9,7 @@ const initialState = {
 
 export default function (state = initialState, action) {
   const { type, payload } = action;
-  console.log(state);
+  // console.log(state);
   switch (type) {
     case UPDATE_FOLLOWERS:
       return {

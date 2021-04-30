@@ -21,13 +21,13 @@ router.post(
         avatar: user.avatar,
         text: req.body.text,
       };
-      console.log(newComment);
+      // console.log(newComment);
       let post = await Post.findById(req.params.post_id);
       if (!post) {
         return res.status(400).json({ msg: 'No post found' });
       }
       post.comments.unshift(newComment);
-      console.log('Success');
+      // console.log('Success');
       await post.save();
       res.json(newComment);
     } catch (err) {

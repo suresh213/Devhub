@@ -33,7 +33,7 @@ router.put(
     if (to) newEducation.to = to;
     if (current) newEducation.current = current;
     if (description) newEducation.description = description;
-    console.log(newEducation);
+    // console.log(newEducation);
     try {
       let profile = await Profile.findOne({ user: req.user.id });
       profile.education.unshift(newEducation);
@@ -51,7 +51,7 @@ router.delete('/:edu_id', auth, async (req, res) => {
     const profile = await Profile.findOne({ user: req.user.id });
     const eduIds = profile.education.map((edu) => edu._id.toString());
     const removeIndex = eduIds.indexOf(req.params.edu_id);
-    console.log(removeIndex);
+    // console.log(removeIndex);
     if (removeIndex === -1) {
       return res.status(500).json({ msg: 'Server error' });
     } else {

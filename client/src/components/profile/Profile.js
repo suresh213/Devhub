@@ -43,7 +43,7 @@ const Profile = ({
           },
         });
       });
-    console.log(profile);
+    // console.log(profile);
   }, []);
 
   // if (

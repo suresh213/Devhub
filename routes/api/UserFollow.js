@@ -5,12 +5,12 @@ const User = require('../../models/User');
 
 router.put('/:id', auth, async (req, res) => {
   try {
-    console.log(req.params.id);
+    // console.log(req.params.id);
     let user = await User.findById(req.params.id);
     if (!user) {
       return res.status(400).json({ msg: 'No user found' });
     }
-    console.log(user);
+    // console.log(user);
     if (user.followers.filter((i) => i.toString() === req.user.id).length > 0) {
       return res.status(400).json({ msg: 'User already followed' });
     }
@@ -51,7 +51,7 @@ router.delete('/:id', auth, async (req, res) => {
     let removeIndex = user.followers
       .map((i) => i.toString())
       .indexOf(req.user.id);
-    console.log(removeIndex);
+    // console.log(removeIndex);
     user.followers.splice(removeIndex, 1);
     await user.save();
 

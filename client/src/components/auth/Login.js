@@ -25,7 +25,7 @@ const Login = ({ login, isAuthenticated, auth }) => {
       toast.error('Enter Credentials');
       return;
     }
-    console.log(auth);
+    // console.log(auth);
     login({ email, password });
   };
   

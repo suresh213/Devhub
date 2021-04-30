@@ -137,14 +137,14 @@ img {
   display: inline-block;
   background: var(--light-color);
   color: #333;
-  padding: 0.4rem 1.3rem;
+  padding: 0.3rem 0.7rem;
   font-size: 1rem;
   border: none;
   cursor: pointer;
   margin-right: 0.5rem;
   transition: opacity 0.2s ease-in;
   outline: none;
-  border-radius: 25px;
+  border-radius: 10px;
 }
 
 .badge {
@@ -192,19 +192,21 @@ img {
   display: inline-block;
   background: rgb(11, 126, 202);
   color: rgb(255, 255, 255);
-  padding: 0.2rem 0.7rem;
+  padding: 0.1rem 0.5rem;
   font-size: 1rem;
   margin-right: 0;
   border-radius: 5px;
+  margin-top: 10px;
 }
 .btn-unfollow {
   display: inline-block;
-  background: rgb(11, 126, 202);
+  background: var(--dark-color);
   color: rgb(255, 255, 255);
-  padding: 0.2rem 0.7rem;
+  padding: 0.1rem 0.5rem;
   font-size: 1rem;
   margin-right: 0;
   border-radius: 5px;
+  margin-top: 10px;
 }
 
 .btn-danger,

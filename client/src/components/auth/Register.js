@@ -1,5 +1,4 @@
 import React, { useState, Fragment } from 'react';
-import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
@@ -9,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import developerImg from '../../common/assets/developer.png';
 toast.configure();
 
-const Register = ({ setAlert, register, isAuthenticated }) => {
+const Register = ({register, isAuthenticated }) => {
   const [formData, setformData] = useState({
     name: '',
     email: '',
@@ -102,11 +101,10 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
   );
 };
 Register.propTypes = {
-  setAlert: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool,
 };
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
-export default connect(mapStateToProps, { setAlert, register })(Register);
+export default connect(mapStateToProps, {  register })(Register);

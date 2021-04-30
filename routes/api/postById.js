@@ -5,7 +5,7 @@ const Post = require('../../models/Posts');
 // Get post by id
 router.get('/:post_id', async (req, res) => {
   try {
-    console.log(req.params.post_id);
+    // console.log(req.params.post_id);
     let post = await Post.findById(req.params.post_id);
     if (!post) {
       return res.status(400).json({ msg: 'No post found' });
