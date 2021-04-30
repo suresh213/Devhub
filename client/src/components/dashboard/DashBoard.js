@@ -234,7 +234,7 @@ const DashBoard = ({
                   >
                     {profile.social.instagram.length > 0
                       ? profile.social.instagram
-                      : 'No link found'}
+                      : 'No link found'} 
                   </a>
                 </div>
               </div>
