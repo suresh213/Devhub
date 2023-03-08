@@ -1,31 +1,32 @@
-import React, { Fragment, useEffect } from 'react';
-import './App.css';
+import React, { Fragment, useEffect } from "react";
+import "./App.css";
 import {
   BrowserRouter as Router,
   Route,
   Switch,
   Redirect,
-} from 'react-router-dom';
-import { Provider } from 'react-redux';
-import store from './store';
-import { loadUser } from './actions/auth';
-import setAuthToken from './utils/setAuthToken';
+} from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./store";
+import { loadUser } from "./actions/auth";
+import setAuthToken from "./utils/setAuthToken";
 
 // Components
-import NavBar from './components/layouts/NavBar';
-import Landing from './components/layouts/Landing';
-import Login from './components/auth/Login';
-import Register from './components/auth/Register';
-import DashBoard from './components/dashboard/DashBoard';
-import Post from './components/post/Post';
-import Posts from './components/posts/Posts';
-import PrivateRoute from './components/routing/PrivateRoute';
-import CreateProfile from './components/profile-forms/CreateProfile';
-import EditProfile from './components/profile-forms/EditProfile';
-import Profiles from './components/profiles/Profiles';
-import Profile from './components/profile/Profile';
-import AddExperience from './components/profile-forms/AddExperience';
-import AddEducation from './components/profile-forms/AddEducation';
+import NavBar from "./components/layouts/NavBar";
+import Landing from "./components/layouts/Landing";
+import Login from "./components/auth/Login";
+import Register from "./components/auth/Register";
+import DashBoard from "./components/dashboard/DashBoard";
+import Post from "./components/post/Post";
+import Posts from "./components/posts/Posts";
+import PrivateRoute from "./components/routing/PrivateRoute";
+import CreateProfile from "./components/profile-forms/CreateProfile";
+import EditProfile from "./components/profile-forms/EditProfile";
+import Profiles from "./components/profiles/Profiles";
+import Profile from "./components/profile/Profile";
+import AddExperience from "./components/profile-forms/AddExperience";
+import AddEducation from "./components/profile-forms/AddEducation";
+// import Chat from './components/Chat/Chat';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -41,38 +42,43 @@ const App = () => {
       <Router>
         <Fragment>
           <NavBar />
-          <Route exact path='/'>
-            <Redirect to='/login' />
+          <Route exact path="/">
+            <Redirect to="/login" />
           </Route>
-          <section className='container'>
+          <section className="container">
             <Switch>
-              <Route exact path='/login' component={Login} />
-              <Route exact path='/register' component={Register} />
-              <PrivateRoute exact path='/developers' component={Profiles} />
-              <Route exact path='/profile/:id' component={Profile} />
-              <PrivateRoute exact path='/dashboard' component={DashBoard} />
-              <PrivateRoute exact path='/posts' component={Posts} />
-              <PrivateRoute exact path='/posts/:id' component={Post} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/register" component={Register} />
+              <PrivateRoute exact path="/developers" component={Profiles} />
+              <Route exact path="/profile/:id" component={Profile} />
+              <PrivateRoute exact path="/dashboard" component={DashBoard} />
+              <PrivateRoute exact path="/posts" component={Posts} />
+              <PrivateRoute exact path="/posts/:id" component={Post} />
               <PrivateRoute
                 exact
-                path='/create-profile'
+                path="/create-profile"
                 component={CreateProfile}
               />
               <PrivateRoute
                 exact
-                path='/edit-profile'
+                path="/edit-profile"
                 component={EditProfile}
               />
               <PrivateRoute
                 exact
-                path='/add-Experience'
+                path="/add-Experience"
                 component={AddExperience}
               />
               <PrivateRoute
                 exact
-                path='/add-Education'
+                path="/add-Education"
                 component={AddEducation}
               />
+              {/* <PrivateRoute
+                exact
+                path='/chat'
+                component={Chat}
+              /> */}
             </Switch>
           </section>
         </Fragment>
