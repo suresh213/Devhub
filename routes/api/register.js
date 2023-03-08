@@ -8,8 +8,8 @@ const bcrypt = require("bcryptjs");
 const config = require("config");
 const jwt = require("jsonwebtoken");
 
-const { connect } = require("getstream");
-const StreamChat = require("stream-chat").StreamChat;
+// const { connect } = require("getstream");
+// const StreamChat = require("stream-chat").StreamChat;
 const crypto = require("crypto");
 
 const api_key = "pm4bsbbnrdtr";
@@ -71,10 +71,10 @@ router.post(
           id: user.id,
         },
       };
-      const serverClient = connect(api_key, api_secret, app_id);
-      console.log(serverClient);
-      const userId = crypto.randomBytes(16).toString("hex");
-      const chatToken = serverClient.createUserToken(userId);
+      // const serverClient = connect(api_key, api_secret, app_id);
+      // console.log(serverClient);
+      // const userId = crypto.randomBytes(16).toString("hex");
+      // const chatToken = serverClient.createUserToken(userId);
 
       jwt.sign(
         payload,
@@ -82,7 +82,7 @@ router.post(
         { expiresIn: 360000 },
         (err, token) => {
           if (err) throw err;
-          res.json({ token, chatToken, ...result._doc });
+          res.json({ token, ...result._doc });
         }
       );
     } catch (err) {

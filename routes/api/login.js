@@ -5,8 +5,8 @@ const { check, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require("config");
-const { connect } = require("getstream");
-const StreamChat = require("stream-chat").StreamChat;
+// const { connect } = require("getstream");
+// const StreamChat = require("stream-chat").StreamChat;
 const crypto = require("crypto");
 
 const api_key = "pm4bsbbnrdtr";
@@ -47,15 +47,15 @@ router.post(
         },
       };
 
-      const serverClient = connect(api_key, api_secret, app_id);
-      const client = StreamChat.getInstance(api_key, api_secret);
+      // const serverClient = connect(api_key, api_secret, app_id);
+      // const client = StreamChat.getInstance(api_key, api_secret);
 
-      const { users } = await client.queryUsers({email});
+      // const { users } = await client.queryUsers({email});
 
-      if (!users.length)
-        return res.status(400).json({ message: "User not found" });
+      // if (!users.length)
+      //   return res.status(400).json({ message: "User not found" });
 
-      const chatToken = serverClient.createUserToken(users[0].id);
+      // const chatToken = serverClient.createUserToken(users[0].id);
 
       jwt.sign(
         payload,
@@ -63,7 +63,7 @@ router.post(
         { expiresIn: 360000 },
         (err, token) => {
           if (err) throw err;
-          res.json({ token, chatToken, ...user });
+          res.json({ token, ...user });
         }
       );
     } catch (err) {
