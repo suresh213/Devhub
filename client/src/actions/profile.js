@@ -9,7 +9,7 @@ import {
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-axios.defaults.baseURL = process.env.API_URL;
+axios.defaults.baseURL = process.env.REACT_API_URL;
 
 export const getCurrentProfile = () => async (dispatch) => {
   try {

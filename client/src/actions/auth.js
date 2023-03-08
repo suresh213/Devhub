@@ -15,7 +15,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 toast.configure();
 
-axios.defaults.baseURL = process.env.API_URL;
+axios.defaults.baseURL = process.env.REACT_API_URL;
 
 export const loadUser = () => async (dispatch) => {
   if (localStorage.token) {
