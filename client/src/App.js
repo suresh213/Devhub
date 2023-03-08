@@ -28,6 +28,8 @@ import AddExperience from "./components/profile-forms/AddExperience";
 import AddEducation from "./components/profile-forms/AddEducation";
 // import Chat from './components/Chat/Chat';
 
+require("dotenv").config();
+
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }

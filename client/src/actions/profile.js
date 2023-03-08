@@ -9,6 +9,8 @@ import {
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
+axios.defaults.baseURL = process.env.API_URL;
+
 export const getCurrentProfile = () => async (dispatch) => {
   try {
     const res = await axios.get('/api/profile/me');

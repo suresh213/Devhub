@@ -7,9 +7,11 @@ import {
   ADD_POST,
   ADD_COMMENT,
   REMOVE_COMMENT,
-} from './types';
-import axios from 'axios';
-import { toast } from 'react-toastify';
+} from "./types";
+import axios from "axios";
+import { toast } from "react-toastify";
+
+axios.defaults.baseURL = process.env.API_URL;
 
 export const getPostById = (id) => async (dispatch) => {
   try {
@@ -30,7 +32,7 @@ export const getPostById = (id) => async (dispatch) => {
 };
 export const getAllPosts = () => async (dispatch) => {
   try {
-    const res = await axios.get('/api/posts/allPosts');
+    const res = await axios.get("/api/posts/allPosts");
     dispatch({
       type: GET_POSTS,
       payload: res.data,
@@ -74,7 +76,7 @@ export const removeLike = (id) => async (dispatch) => {
 export const addPost = (formdata) => async (dispatch) => {
   const config = {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   };
   try {
@@ -108,7 +110,7 @@ export const deletePost = (id) => async (dispatch) => {
 export const addComment = (formData, postId) => async (dispatch) => {
   const config = {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   };
 
@@ -123,7 +125,7 @@ export const addComment = (formData, postId) => async (dispatch) => {
       payload: res.data,
     });
 
-    toast('Comment added');
+    toast("Comment added");
   } catch (err) {
     dispatch({
       type: POST_ERROR,
@@ -142,7 +144,7 @@ export const removeComment = (postId, commentId) => async (dispatch) => {
       type: REMOVE_COMMENT,
       payload: commentId,
     });
-    toast('Comment deleted');
+    toast("Comment deleted");
   } catch (err) {
     dispatch({
       type: POST_ERROR,
